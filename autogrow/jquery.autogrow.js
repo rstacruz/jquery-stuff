@@ -1,3 +1,6 @@
+// Usage:
+// $("#myform textarea").autogrow();
+//
 (function($) {
 
     /*
