@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js'></script> 
+    <script src='jquery.hashlisten.js'></script>
+    <script src='jquery.livenavigate.js'></script>
+
+    <script type='text/javascript'>
+      // Bind it to all links.
+      $('a').live('click', function (e)
+      {
+        if ($(this).is("[rel~=external]")) // Ignore external links.
+          { return true; }
+
+        $.navigate($(this).attr('href'));  // Navigate to it, then
+        $('#loading').show();              // show the loading indicator
+        return false;
+      });
+
+      $(window).bind('navigate', function(e, href)
+      {
+        // Load it via AJAX.
+        $.get(href, function(data)
+        {
+          // Load the #content of the page.
+          var $data = $("<div>").html(data);
+          var html  = $data.find('#content').html();
+
+          $("#content").html(html);         // Load in place, and
+          $('#loading').fadeOut();          // hide the loading indicator
+        });
+      });
+    </script>
+
+    <style>
+        #loading { position: fixed; width: 100px; height: 30px; line-height: 30px; background: red; color: white; padding: 5px; top: 0; right: 0; }
+        #content { margin: 0 auto; width: 300px; height: 300px; background: #eee; padding: 20px; }
+        #menu { text-align: center; }
+
+        body { font-family: arial, sans-serif; }
+        #menu, #content { margin: 10px auto; }
+    </style>
+  </head>
+  <body>
+    <div id='loading' style='display: none'>Loading...</div>
+
+    <div id='menu'>
+      <a href='link1.html'>One</a> | <a href='link2.html'>Two</a>
+    </div>
+
+    <div id='content'>
+        Click something above.
+        <p>Note: this only works when uploaded to a live server! Trying this as a local file will not work.</p>
+    </div>
+  </body>
+</html>
+
