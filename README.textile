@@ -2,13 +2,19 @@ h1. jQuery stuff
 
 h4. A grabbag of plugins I've written over the years
 
+This is a humble repository of jQuery plugins that I've written for our projects. These are usually small plugins (<75 sloc).
+
+If you're to use any of these, I encourage you to just drop it into your project and maintain it yourself--I can't claim maintain these in a backward-compatible manner.
+
+These plugins make great 'starting points' for whatever you'll need. Take them and modify them (or not) as you see fit.
+
 | "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow          | Automatically makes text fields vertically grow in size |
 | "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify        | Truncates text with ellipses |
 | "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                | Lightweight notification library |
 | "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance          | Lightweight views |
 | "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder    | Input text placeholders, fork of Vadim Sitel's work  |
 | "Scrope"://github.com/rstacruz/jquery-stuff/tree/master/scrope              | SCROll Parallax Effect thing |
-| "uiscreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen          | Blacks out things |
+| "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen          | Blacks out things |
 | "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan          | Prevents text orphans |
 | "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate  | In-page navigation that doesn't break the back button and actually changes the URL  |
 
