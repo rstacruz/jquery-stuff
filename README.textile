@@ -19,4 +19,5 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate   | In-page navigation that doesn't break the back button and actually changes the URL |
 | "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible | Scrolls a pane to reveal a given item.                                             |
 | "SerializeHash"://github.com/rstacruz/jquery-stuff/tree/master/serializehash | Returns a form's values as a dictionary object.                                    |
+| "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                   | Sorts DOM elements.                                                                |
 
