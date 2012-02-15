@@ -21,6 +21,13 @@
       var dy = e.originalEvent.wheelDeltaY;
       var dx = e.originalEvent.wheelDeltaX;
 
+      // Die, older browsers.
+      if ((typeof dy === 'undefined') ||
+          (typeof dx === 'undefined') ||
+          (typeof this.scrollHeight === 'undefined')) {
+        return;
+      }
+
       // Get direction of scrolling.
       var scrolling = {
         down:  dy < 0,
