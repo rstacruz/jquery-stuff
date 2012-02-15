@@ -2,7 +2,7 @@
 
   // If you have an element with overflow: auto (or overflow: scroll), and you
   // try to use your mouse wheel to scroll it, the document will probably scroll
-  // once your pane is at it's boundaries.
+  // once your scroll pane is at its boundaries.
   //
   //     <!-- Once this hits the bottom of the scroll pane, using the
   //          mouse wheel to scroll will scroll the document. Not good. -->
