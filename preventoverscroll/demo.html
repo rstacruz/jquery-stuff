@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js'></script>
+    <style>
+      .scrollable { width: 100px; height: 150px; overflow: scroll; border: solid 1px red; }
+    </style>
+</head>
+<body>
+  
+  <br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>
+<div class=scrollable>
+  hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>hi<br>
+</div>
+  hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>hello<br>
+  <script>
+    $.fn.preventOverscroll = function() {
+      var $this = $(this);
+
+      $this.live("mousewheel", function(e) {
+        var dy = e.originalEvent.wheelDeltaY;
+        var dx = e.originalEvent.wheelDeltaX;
+
+        // Get direction of scrolling.
+        var scrolling = {
+          down:  dy < 0,
+          up:    dy > 0,
+          left:  dx > 0,
+          right: dx < 0
+        };
+
+        // Check if we're at boundaries.
+        var at = {
+          top:    ($this.scrollTop() === 0),
+          left:   ($this.scrollLeft() === 0),
+          bottom: (this.scrollHeight - $this.scrollTop() <= $this.height()),
+          right:  (this.scrollHeight - $this.scrollTop() <= $this.height())
+        };
+
+        if ((scrolling.down  && at.bottom) ||
+            (scrolling.up    && at.top) ||
+            (scrolling.left  && at.left) ||
+            (scrolling.right && at.right)) {
+          e.preventDefault();
+        }
+      });
+    };
+
+    $(".scrollable").preventOverscroll();
+  </script>
+</body>
+</html>

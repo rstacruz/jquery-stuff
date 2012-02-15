@@ -8,20 +8,21 @@ If you're to use any of these, I encourage you to just drop it into your project
 
 These plugins make great 'starting points' for whatever you'll need. Take them and modify them (or not) as you see fit.
 
-| "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow           | Automatically makes text fields vertically grow in size                            |
-| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify         | Truncates text with ellipses                                                       |
-| "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                 | Lightweight notification library                                                   |
-| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance           | Lightweight views                                                                  |
-| "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder     | Input text placeholders, fork of Vadim Sitel's work                                |
-| "Scrope"://github.com/rstacruz/jquery-stuff/tree/master/scrope               | SCROll Parallax Effect thing                                                       |
-| "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen           | Blacks out things                                                                  |
-| "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan           | Prevents text orphans                                                              |
-| "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate   | In-page navigation that doesn't break the back button and actually changes the URL |
-| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible | Scrolls a pane to reveal a given item.                                             |
-| "SerializeHash"://github.com/rstacruz/jquery-stuff/tree/master/serializehash | Returns a form's values as a dictionary object.                                    |
-| "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                   | Sorts DOM elements.                                                                |
-| "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable       | Simple toggle menu helper.                                                         |
-| "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *               | General-purpose wrapper for setTimeout.                                            |
+| "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow                    | Automatically makes text fields vertically grow in size                            |
+| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
+| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item.                                             |
+| "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                          | Lightweight notification library                                                   |
+| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
+| "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder              | Input text placeholders, fork of Vadim Sitel's work                                |
+| "Scrope"://github.com/rstacruz/jquery-stuff/tree/master/scrope                        | SCROll Parallax Effect thing                                                       |
+| "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen                    | Blacks out things                                                                  |
+| "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan                    | Prevents text orphans                                                              |
+| "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
+| "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling.                                                         |
+| "SerializeHash"://github.com/rstacruz/jquery-stuff/tree/master/serializehash          | Returns a form's values as a dictionary object.                                    |
+| "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements.                                                                |
+| "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable                | Simple toggle menu helper.                                                         |
+| "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *                        | General-purpose wrapper for setTimeout.                                            |
 
 _* = no dependency on jQuery_
 
