@@ -15,9 +15,9 @@
   //     $(".scrollable").preventOverscroll();
   //
   $.fn.preventOverscroll = function() {
-    var $this = $(this);
+    $(this).live("mousewheel", function(e) {
+      var $this = $(this);
 
-    $this.live("mousewheel", function(e) {
       var dy = e.originalEvent.wheelDeltaY;
       var dx = e.originalEvent.wheelDeltaX;
 
