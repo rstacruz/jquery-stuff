@@ -3,7 +3,7 @@ Sorts the insides of a given element.
 
 ### Options
 
- * `via` (function, required) - the comparator function.
+ * `via` (function, required) - should return the value to be sorted.
  * `items` (string) - the selector of the children. defaults to '\*'.
  * `order` (string) - the order ('desc' or 'asc'). defaults to 'asc'.
 
