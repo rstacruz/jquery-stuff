@@ -10,7 +10,7 @@
   //     <div class="scrollable">...</div>
   //     .scrollable { overflow: auto; height: 200px; }
   //
-  // Simply use .preventScroll() to stop this behavior.
+  // Simply use .preventOverscroll() to stop this behavior.
   //
   //     $(".scrollable").preventOverscroll();
   //
