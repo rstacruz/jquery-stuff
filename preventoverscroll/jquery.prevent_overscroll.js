@@ -15,42 +15,85 @@
   //     $(".scrollable").preventOverscroll();
   //
   $.fn.preventOverscroll = function() {
-    $(this).live("mousewheel", function(e) {
-      var $this = $(this);
+    // For WebKits, et al.
+    if ('onmousewheel' in document.documentElement) {
+      $(this).live('mousewheel', function(e) {
+        var $this = $(this);
 
-      var dy = e.originalEvent.wheelDeltaY;
-      var dx = e.originalEvent.wheelDeltaX;
+        var dy = e.originalEvent.wheelDeltaY;
+        var dx = e.originalEvent.wheelDeltaX;
 
-      // Die, older browsers.
-      if ((typeof dy === 'undefined') ||
-          (typeof dx === 'undefined') ||
-          (typeof this.scrollHeight === 'undefined')) {
-        return;
-      }
+        // Sanity check for older browsers.
+        if ((typeof dy === 'undefined') ||
+            (typeof dx === 'undefined') ||
+            (typeof this.scrollHeight === 'undefined')) {
+          return;
+        }
 
-      // Get direction of scrolling.
-      var scrolling = {
-        down:  dy < 0,
-        up:    dy > 0,
-        left:  dx > 0,
-        right: dx < 0
-      };
+        // Get scrolling direction info, Webkit style.
+        var scrolling = {
+          down:  dy < 0,
+          up:    dy > 0,
+          left:  dx > 0,
+          right: dx < 0
+        };
 
-      // Check if we're at boundaries.
+        if (shouldStop($this, scrolling)) {
+          e.preventDefault();
+        }
+      });
+    }
+
+    // For Moz.
+    if ('MouseScrollEvent' in window) {
+      $(this).live("DOMMouseScroll", function(e) {
+        var $this = $(this);
+        var ee = e.originalEvent;
+
+        // Sanity check.
+        if ((typeof ee.axis === 'undefined') ||
+            (typeof this.scrollHeight === 'undefined')) {
+          return;
+        }
+
+        // Get scrolling direction info, Mozilla style.
+        var horiz = (ee.axis === ee.HORIZONTAL_AXIS);
+        var vert  = (ee.axis === ee.VERTICAL_AXIS);
+        var delta = ee.detail;
+
+        var scrolling = {
+          down:  vert  && delta > 0,
+          up:    vert  && delta < 0,
+          left:  horiz && delta < 0,
+          right: horiz && delta > 0
+        }
+
+        if (shouldStop($this, scrolling)) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    }
+
+    // Given scrolling data `scrolling`, check if element `this` should stop
+    // scrolling. Check if we're at boundaries.
+    function shouldStop($this, scrolling) {
+      // These are true/false of whether the content is already at boundaries.
+      // For instance, `top` and `left` may both be true.
       var at = {
         top:    ($this.scrollTop()  === 0),
         left:   ($this.scrollLeft() === 0),
-        bottom: (this.scrollHeight - $this.scrollTop()  <= $this.height()),
-        right:  (this.scrollWidth  - $this.scrollLeft() <= $this.width())
+        bottom: ($this[0].scrollHeight - $this.scrollTop()  <= $this.height()),
+        right:  ($this[0].scrollWidth  - $this.scrollLeft() <= $this.width())
       };
 
-      if ((scrolling.down  && at.bottom) ||
-          (scrolling.up    && at.top) ||
-          (scrolling.left  && at.left) ||
-          (scrolling.right && at.right)) {
-        e.preventDefault();
-      }
-    });
+      return (
+        (scrolling.down  && at.bottom) ||
+        (scrolling.up    && at.top)    ||
+        (scrolling.left  && at.left)   ||
+        (scrolling.right && at.right)
+      );
+    }
   };
 
 })(jQuery);
