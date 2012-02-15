@@ -23,5 +23,5 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable       | Simple toggle menu helper.                                                         |
 | "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *               | General-purpose wrapper for setTimeout.                                            |
 
-* = not jQuery
+_* = no dependency on jQuery_
 
