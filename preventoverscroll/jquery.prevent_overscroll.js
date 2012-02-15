@@ -31,10 +31,10 @@
 
       // Check if we're at boundaries.
       var at = {
-        top:    ($this.scrollTop() === 0),
+        top:    ($this.scrollTop()  === 0),
         left:   ($this.scrollLeft() === 0),
-        bottom: (this.scrollHeight - $this.scrollTop() <= $this.height()),
-        right:  (this.scrollHeight - $this.scrollTop() <= $this.height())
+        bottom: (this.scrollHeight - $this.scrollTop()  <= $this.height()),
+        right:  (this.scrollWidth  - $this.scrollLeft() <= $this.width())
       };
 
       if ((scrolling.down  && at.bottom) ||
