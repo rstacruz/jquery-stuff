@@ -3,18 +3,27 @@
   // General purpose timer class.
   // http://github.com/rstacruz/jquery-stuff
   //
+  // Instanciating a Timer is the same as doing `setTimeout`.
+  //
   //     t = new Timer(200, function() { ... });
-  //     t.abort()
   //
-  //     // Or to (re)set a function later on
-  //     t = new Timer;
-  //     t.reset(200, function() { ... })
+  // But, you can abort it before it happens!
   //
-  //     // You can restart the timer before it executes
+  //     t.abort();
+  //
+  // You can also restart the timer before it executes.
+  // You can also restart() after aborting.
+  //
   //     t.restart();
   //
-  //     // You can provide a new delay
+  // You can provide a new delay.
+  //
   //     t.restart(400);
+  //
+  // If you'd like to instanciate a Timer now, but activate it later on:
+  //
+  //     t = new Timer;
+  //     t.reset(200, function() { ... })
 
   function Timer(delay, fn) {
     this.initialize(delay, fn);
@@ -42,9 +51,11 @@
       self.delay = delay;
 
       self.id = window.setTimeout(function() {
-        self._cleanup();
+        self.id = null;
         fn();
       }, delay);
+
+      return this;
     },
 
     restart: function(delay) {
@@ -56,19 +67,17 @@
         this.abort();
         this.reset(this.delay, this.fn);
       }
+
+      return this;
     },
 
     abort: function() {
       if (this.id != null) {
         window.clearTimeout(this.id);
-        this._cleanup();
+        this.id = null;
       }
-    },
 
-    _cleanup: function() {
-      this._id = null;
-      this.fn = null;
-      this.delay = null;
+      return this;
     }
   };
 
