@@ -46,7 +46,7 @@ More complicated:
 ``` javascript
 $("table").sort({
   via: function(tr) { return parseInt(tr.find('td:eq(1)').text()); },
-  sel: 'tr:not(.heading)',
+  items: 'tr:not(.heading)',
   order: 'desc'
 });
 ```
