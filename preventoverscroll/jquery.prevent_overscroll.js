@@ -1,5 +1,10 @@
 (function($) {
 
+  // ---------------------------------------
+  // PreventOverscroll
+  // http://github.com/rstacruz/jquery-stuff
+  // ---------------------------------------
+
   // If you have an element with overflow: auto (or overflow: scroll), and you
   // try to use your mouse wheel to scroll it, the document will probably scroll
   // once your scroll pane is at its boundaries.
