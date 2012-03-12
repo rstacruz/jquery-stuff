@@ -2,7 +2,7 @@
 
   // Makes a certain element a toggle-to-activate thing. Clicking the button
   // (the selector defined in `using`) will toggle the 'active' class for both
-  // the button and the parent element. Great for toggle menus.
+  // the button and the parent element.
   //
   //     $("nav.dropdown").toggleable({ using: "a.button", [sticky: true] });
   //
@@ -14,23 +14,31 @@
     var $parent = this;
     var $button = $(options.using, this);
 
-    $button.live('click', function(e) {
+    $parent.on('active:off', function() {
+      $button.removeClass('active');
+      $parent.removeClass('active');
+    });
+
+    $parent.on('active:on', function() {
+      $button.addClass('active');
+      $parent.addClass('active');
+    });
+
+    $button.on('click', function(e) {
       // Prevent the body handler from working.
       e.preventDefault();
       e.stopPropagation();
 
       if ($parent.is('.active')) {
-        $button.removeClass('active');
-        $parent.removeClass('active');
+        $parent.trigger('active:off');
       } else {
         // Clear out any other popup first.
         $('body').trigger('click');
-        $button.addClass('active');
-        $parent.addClass('active');
+        $parent.trigger('active:on');
       }
     });
 
-    $('body').live('click', function(e) {
+    $('body').on('click', function(e) {
       // If sticky is true, don't dismiss the popup when the menu items
       // are clicked.
       if (options.sticky) {
@@ -38,8 +46,7 @@
         if (isMenuItem) return;
       }
 
-      $button.removeClass('active');
-      $parent.removeClass('active');
+      $parent.trigger('active:off');
     });
   };
 
