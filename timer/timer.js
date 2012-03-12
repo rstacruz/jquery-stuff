@@ -71,6 +71,11 @@
       return this;
     },
 
+    trigger: function() {
+      if (this.fn) this.fn();
+      return this;
+    },
+
     abort: function() {
       if (this.id != null) {
         window.clearTimeout(this.id);
