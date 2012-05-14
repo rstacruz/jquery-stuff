@@ -21,6 +21,7 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling.                                                         |
 | "SerializeHash"://github.com/rstacruz/jquery-stuff/tree/master/serializehash          | Returns a form's values as a dictionary object.                                    |
 | "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements.                                                                |
+| "Tabs"://github.com/rstacruz/jquery-stuff/tree/master/tabs                            | Simple tab control.                                                                |
 | "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable                | Simple toggle menu helper.                                                         |
 | "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *                        | General-purpose wrapper for setTimeout.                                            |
 
