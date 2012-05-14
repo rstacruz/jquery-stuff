@@ -1,3 +1,8 @@
+/*! ---------------------------------------
+ *  Unorphan
+ *  http://github.com/rstacruz/jquery-stuff
+ * ---------------------------------------- */
+
 $.fn.unorphan = function() {
   $(this).each(function() {
     var last = this.lastChild;
