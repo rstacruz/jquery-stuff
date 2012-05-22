@@ -15,8 +15,6 @@
 //     activate: false       /* Activate the tabs on start. Default: false */
 //   });
 //
-// http://github.com/rstacruz/jquery-stuff
-//
 (function($) {
   $.fn.tabbed = function(options) {
     var defaults = {
