@@ -10,15 +10,25 @@
 //
 //    // Via delegate:
 //    $("#menu").anchorjump({ for: 'a', offset: -30 });
+//
+// You may specify a parent. This makes it scroll down to the parent.
+// Great for tabbed views.
+//
+//     $('#menu a').anchorjump({ parent: '.anchor' });
+//
+// You can jump to a given area.
+//
+//     $.anchorjump('#bank-deposit', options);
 
 (function($) {
-  $.fn.anchorjump = function(options) {
-    var defaults = {
-      speed: 500,
-      offset: 0,
-      for: null
-    };
+  var defaults = {
+    speed: 500,
+    offset: 0,
+    for: null,
+    parent: null
+  };
 
+  $.fn.anchorjump = function(options) {
     options = $.extend({}, defaults, options);
 
     if (options['for']) {
@@ -33,14 +43,33 @@
 
       e.preventDefault();
       var href = $a.attr('href');
-      var $area = $(href);
 
-      $('body').animate({ scrollTop: $area.offset().top + options.offset }, options.speed);
-
-      // Add the location hash via pushState.
-      if (window.history.pushState) {
-        window.history.pushState({ href: href }, "", href);
-      }
+      $.anchorjump(href, options);
     };
+  };
+
+  // Jump to a given area.
+  $.anchorjump = function(href, options) {
+    options = $.extend({}, defaults, options);
+
+    var $area = $(href);
+    var top = 0;
+
+    if (href != '#') {
+      // Find the parent
+      if (options.parent) {
+        var $parent = $area.closest(options.parent);
+        if ($parent.length) { $area = $parent; }
+      }
+      if (!$area.length) { return; }
+    }
+
+    $('body').animate({ scrollTop: top }, options.speed);
+    $('body').trigger('anchor', href);
+
+    // Add the location hash via pushState.
+    if (window.history.pushState) {
+      window.history.pushState({ href: href }, "", href);
+    }
   };
 })(jQuery);
