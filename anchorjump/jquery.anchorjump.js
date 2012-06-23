@@ -52,19 +52,20 @@
   $.anchorjump = function(href, options) {
     options = $.extend({}, defaults, options);
 
-    var $area = $(href);
     var top = 0;
 
     if (href != '#') {
+      var $area = $(href);
       // Find the parent
       if (options.parent) {
         var $parent = $area.closest(options.parent);
         if ($parent.length) { $area = $parent; }
       }
       if (!$area.length) { return; }
+      top = $area.offset().top + options.offset;
     }
 
-    $('body').animate({ scrollTop: top }, options.speed);
+    $('html, body').animate({ scrollTop: top }, options.speed);
     $('body').trigger('anchor', href);
 
     // Add the location hash via pushState.
