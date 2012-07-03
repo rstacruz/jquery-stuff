@@ -19,6 +19,7 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen                    | Blacks out things                                                                  |
 | "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan                    | Prevents text orphans                                                              |
 | "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
+| "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                                        |
 | "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling                                                          |
 | "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport              |
 | "SerializeHash"://github.com/rstacruz/jquery-stuff/tree/master/serializehash          | Returns a form's values as a dictionary object                                     |
