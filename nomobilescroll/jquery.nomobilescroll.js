@@ -27,9 +27,7 @@
         }
       });
 
-      // If there is no scrollable pane, or if there is but it's not enough to scroll,
-      // Prevent default.
-      if ((!$pane) || ($pane[0].scrollHeight <= $pane.innerHeight())) {
+      if ((!$pane) || ($pane[0].scrollHeight <= $pane.outerHeight())) {
         e.preventDefault();
       }
     });
