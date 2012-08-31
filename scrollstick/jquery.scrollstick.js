@@ -6,8 +6,7 @@
 // Makes something stick to the top when it gets scrolled away from.
 //
 //    $("#nav").scrollstick({
-//      zIndex: 20,
-//      reclone: true|false   /* Reclone everytime. Default true */
+//      zIndex: 20
 //    });
 //
 (function($) {
@@ -21,57 +20,72 @@
       min: this.offset().top,
       max: null,
       zIndex: 10,
-      reclone: true
     };
 
     options = $.extend({}, defaults, options);
-    var $clone = null;
+
+    var $clone;
+    var $parent;
+    var old;
 
     // On resizing, reposition the top/left/right of the cloned element.
     $(window).on('resize', reposition = function() {
       if ((!$clone) || (!$this.data('stuck'))) return;
 
-      $clone.css({
+      $this.css({
         position: 'fixed',
         zIndex: options.zIndex,
         top: 0,
-        left: $this.offset().left,
-        right: $(window).width() - ($this.offset().left + $this.outerWidth())
+        left: $clone.offset().left,
+        right: $(window).width() - ($clone.offset().left + $clone.outerWidth())
       });
     });
 
     $(window).on('scroll', function() {
       var pos = $(window).scrollTop();
-      var inside = pos > options.min && (!options.max || pos < options.max);
+      var inside = pos > options.min;
       var stuck = $this.data('stuck');
 
       // Stick it.
       if (!stuck && inside) {
+        stuck = true;
         $this.data('stuck', true);
+        $parent = $this.parent();
 
-        if (!$clone) {
-          $clone = $this.clone();
-          $clone.find('script').remove();
-          $clone.addClass('clone').appendTo($('body'));
-        }
+        // Keep old values.
+        old = {
+          position: $this.css('position'),
+          top: $this.css('top'),
+          left: $this.css('left'),
+          right: $this.css('right'),
+        };
+
+        // Make a placeholder.
+        $clone = $this.clone();
+        $clone.addClass('scrollstick-placeholder');
+        $clone.css({ visibility: 'hidden' });
+        $clone.insertAfter($this);
 
         reposition();
+      }
 
-        $this.css({ visibility: 'hidden' });
+      // Move it away.
+      if (typeof options.max === 'number') {
+        if (stuck && pos > options.max) {
+          var extra = pos - options.max;
+          $this.css({ top: -1 * extra });
+        } else {
+          $this.css({ top: 0 });
+        }
       }
 
       // Unstick it.
-      else if (stuck && !inside) {
+      if (stuck && !inside) {
         $this.data('stuck', false);
-        $this.css({ visibility: 'visible' });
 
         // Either kill the clone, or just hide it
-        if (options.reclone) {
-          $clone.remove();
-          $clone = null;
-        } else {
-          $clone.css({ top: '-9999px' });
-        }
+        $this.css({ position: old.position, top: old.top, left: old.left, right: old.right });
+        $clone.remove();
       }
     });
   };
