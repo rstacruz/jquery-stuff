@@ -5,9 +5,20 @@
 
 // Makes something stick to the top when it gets scrolled away from.
 //
+//    $("#nav").scrollstick();
+//
+// You may also specify options:
+//
 //    $("#nav").scrollstick({
 //      zIndex: 20
 //    });
+//
+// All options are optional:
+//
+//  - `min`    - Start sticking when the user has scrolled down this far.
+//  - `max`    - Move away when scrolling down this far.
+//  - `offset` - How many pixels from the top.
+//  - `zIndex` - The zIndex.
 //
 (function($) {
   $.fn.scrollstick = function(options) {
@@ -19,6 +30,7 @@
     var defaults = {
       min: this.offset().top,
       max: null,
+      offset: 0,
       zIndex: 10,
     };
 
@@ -35,7 +47,7 @@
       $this.css({
         position: 'fixed',
         zIndex: options.zIndex,
-        top: 0,
+        top: options.offset,
         left: $clone.offset().left,
         right: $(window).width() - ($clone.offset().left + $clone.outerWidth())
       });
@@ -43,13 +55,14 @@
 
     $(window).on('scroll', function() {
       var pos = $(window).scrollTop();
-      var inside = pos > options.min;
+      var inside = pos > (options.min - options.offset);
       var stuck = $this.data('stuck');
 
       // Stick it.
       if (!stuck && inside) {
         stuck = true;
         $this.data('stuck', true);
+        $this.addClass('stuck');
         $parent = $this.parent();
 
         // Keep old values.
@@ -69,19 +82,19 @@
         reposition();
       }
 
-      // Move it away.
+      // Move it away when you've reached the max.
       if (typeof options.max === 'number') {
         if (stuck && pos > options.max) {
-          var extra = pos - options.max;
-          $this.css({ top: -1 * extra });
+          $this.css({ top: options.offset - (pos - options.max) });
         } else {
-          $this.css({ top: 0 });
+          $this.css({ top: options.offset });
         }
       }
 
       // Unstick it.
       if (stuck && !inside) {
         $this.data('stuck', false);
+        $this.removeClass('stuck');
 
         // Either kill the clone, or just hide it
         $this.css({ position: old.position, top: old.top, left: old.left, right: old.right });
