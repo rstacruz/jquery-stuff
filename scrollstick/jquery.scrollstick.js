@@ -47,6 +47,7 @@
       $this.css({
         position: 'fixed',
         zIndex: options.zIndex,
+        marginTop: 0,
         top: options.offset,
         left: $clone.offset().left,
         right: $(window).width() - ($clone.offset().left + $clone.outerWidth())
@@ -71,6 +72,7 @@
           top: $this.css('top'),
           left: $this.css('left'),
           right: $this.css('right'),
+          marginTop: $this.css('marginTop'),
         };
 
         // Make a placeholder.
@@ -97,7 +99,7 @@
         $this.removeClass('stuck');
 
         // Either kill the clone, or just hide it
-        $this.css({ position: old.position, top: old.top, left: old.left, right: old.right });
+        $this.css({ position: old.position, top: old.top, left: old.left, right: old.right, marginTop: old.marginTop });
         $clone.remove();
       }
     });
