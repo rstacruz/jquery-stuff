@@ -14,11 +14,6 @@
   };
 
   $.extend($.growl, {
-    // Templates
-    templates: {
-      item: "<div class='item'><div class='text'></div><a class='close'>&times;</a></div>"
-    },
-
     // Options
     id: "growl",
     timeout: 5000,
@@ -26,6 +21,15 @@
 
     // State
     $notifs: null,
+
+    // Construct the html. Override me if you like.
+    buildHtml: function(options) {
+      if (options.message && options.title) {
+        return "<div class='item'><h3>"+options.title+"</h3><p>"+options.message+"</p><button class='close'></button></div>";
+      } else {
+        return "<div class='item'><p>"+options.message+"</p><button class='close'></button></div>";
+      }
+    },
 
     showMessage: function(args) {
       // Alias for $.growl('message').
@@ -39,15 +43,19 @@
       var message = args.message;
       var self = this;
 
+      // Build the container for messages.
       if (!self.$notifs) {
         self.$notifs = $("<div id='" + self.id + "'><div class='items'></div></div>");
         $(document.body).append(self.$notifs);
       }
 
+      // Build the HTML.
+      var html = $.growl.buildHtml(args);
+
       // Construct the item.
-      var item = $(self.templates.item);
+      var item = $(html);
       if (args.classname) { item.addClass(args.classname); }
-      item.find('.text').html(message);
+
       item.find('.close').click(function() {
         self._killItem(item);
       });
