@@ -119,13 +119,13 @@
   Cycler.prototype = {
     start: function(silent) {
       var self = this;
-      if ((!self._timer) && (!silent)) this.onstart.apply(this);
+      if ((!self._timer) && (!silent)) self.onstart.apply(self);
 
       self.pause(true);
       self._timer = setTimeout(function() {
         self.next();
-      }, this.interval);
-      return this;
+      }, self.interval);
+      return self;
     },
 
     pause: function(silent) {
