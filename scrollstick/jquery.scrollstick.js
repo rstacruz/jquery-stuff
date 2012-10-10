@@ -32,6 +32,7 @@
       max: null,
       offset: 0,
       zIndex: 10,
+      exitZIndex: 10
     };
 
     options = $.extend({}, defaults, options);
@@ -47,7 +48,7 @@
       $this.css({
         position: 'fixed',
         zIndex: options.zIndex,
-        marginTop: 0,
+        margin: 0,
         top: options.offset,
         left: $clone.offset().left,
         right: $(window).width() - ($clone.offset().left + $clone.outerWidth())
@@ -72,7 +73,7 @@
           top: $this.css('top'),
           left: $this.css('left'),
           right: $this.css('right'),
-          marginTop: $this.css('marginTop'),
+          margin: $this.css('margin'),
         };
 
         // Make a placeholder.
@@ -85,11 +86,20 @@
       }
 
       // Move it away when you've reached the max.
-      if (typeof options.max === 'number') {
-        if (stuck && pos > options.max) {
-          $this.css({ top: options.offset - (pos - options.max) });
-        } else {
-          $this.css({ top: options.offset });
+      if ((typeof options.max === 'number') && (stuck)) {
+        var exiting;
+        exiting = (pos > options.max - options.offset);
+
+        if ((exiting) && ($this.css('position') !== 'absolute')) {
+          $this
+            .addClass('exited')
+            .css({ position: 'absolute', top: options.max, zIndex: options.exitZIndex });
+        }
+
+        if ((!exiting) && ($this.css('position') !== 'fixed')) {
+          $this
+            .removeClass('exited')
+            .css({ position: 'fixed', top: options.offset, zIndex: options.zIndex });
         }
       }
 
@@ -99,7 +109,7 @@
         $this.removeClass('stuck');
 
         // Either kill the clone, or just hide it
-        $this.css({ position: old.position, top: old.top, left: old.left, right: old.right, marginTop: old.marginTop });
+        $this.css({ position: old.position, top: old.top, left: old.left, right: old.right, margin: old.margin });
         $clone.remove();
       }
     });
