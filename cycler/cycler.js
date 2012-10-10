@@ -55,6 +55,27 @@
 //
 //     c.next().pause();
 //
+// Slideshow example
+// -----------------
+//
+//     var $parent = $(".slideshow");
+//     var $images = $parent.find("img");
+//
+//     var c = new Cycler($images, {
+//       interval: 5000,
+//       onactivate: function(current) {
+//         $images.hide();
+//         $(current).show();
+//       }
+//     });
+//
+//     // Custom controls example
+//     $(".slideshow-controls button.next").on("click", function() { c.next(); });
+//     $(".slideshow-controls button.prev").on("click", function() { c.previous(); });
+//
+//     // Pause on hover example
+//     $(".slideshow").on("hover", function() { c.pause(); }, function() { c.start(); });
+//
 (function() {
   function Cycler(list, options) {
     this.interval   = options.interval || 3000;
