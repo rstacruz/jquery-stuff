@@ -6,28 +6,54 @@
 // All the options are optional except `onactivate`.
 //
 //     c = new Cycler(list, {
-//       interval: 300,
+//       interval: 3000,
 //       initial: 0, /* first slide's index */
 //       onactivate: function(current, old) { ... }, /* Required */
 //       onstart: function() { ... },
 //       onpause: function() { ... }
 //     });
 //
+// Navigating
+// ----------
+//
+// You can switch by slides using `next()`, `previous()` and `goto()`. When
+// these are invoked, the interval timer is reset (that is, it will take 3000ms
+// again to switch to the next slide).
+//
+// If these are called when the slideshow is paused, it should remain paused.
+//
+// Doing this will trigger the `onactivate` callback.
+//
 //     c.next();
 //     c.previous();
 //     c.goto(0);
 //
-// Pausing the cycle:
+// Pausing
+// -------
+//
+// You can pause and unpause the slideshow with `pause()` and `start()`. Note
+// that calling `start()` will reset the interval timer.
+//
+// These will call the `onpause` and `onstart` callbacks respectively.
 //
 //     c.pause();
 //     c.start();
 //
-// Properties:
+// You can pass `true` as an argument (eg, `c.pause(true)`) to these to supress
+// triggering the callbacks.
+//
+// Properties
+// ----------
 //
 //     c.current    /* Numeric index of current item */
 //     c.list       /* The list being cycled */
 //
-// All the stuff are chainable too.
+// Chainability
+// ------------
+//
+// All the methods are chainable, too, so you can do:
+//
+//     c.next().pause();
 //
 (function() {
   function Cycler(list, options) {
