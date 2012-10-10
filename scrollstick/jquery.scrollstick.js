@@ -73,7 +73,7 @@
           top: $this.css('top'),
           left: $this.css('left'),
           right: $this.css('right'),
-          margin: $this.css('margin'),
+          margin: $this.css('margin')
         };
 
         // Make a placeholder.
