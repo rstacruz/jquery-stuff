@@ -16,7 +16,7 @@
 // Navigating
 // ----------
 //
-// You can switch by slides using `next()`, `previous()` and `goto()`. When
+// You can switch by slides using `next()`, `previous()` and `goTo()`. When
 // these are invoked, the interval timer is reset (that is, it will take 3000ms
 // again to switch to the next slide).
 //
@@ -26,7 +26,7 @@
 //
 //     c.next();
 //     c.previous();
-//     c.goto(0);
+//     c.goTo(0);
 //
 // The onactivate hook
 // -------------------
@@ -110,11 +110,11 @@
     this.list       = list;
     this.current    = null;
 
-    this.goto(this.initial);
+    this.goTo(this.initial);
     this.start();
 
     return this;
-  };
+  }
 
   Cycler.prototype = {
     start: function(silent) {
@@ -156,10 +156,10 @@
       // Get the index of the new item
       var idx = (this.current + i + len*2) % len;
 
-      return this.goto(idx);
+      return this.goTo(idx);
     },
 
-    goto: function(idx) {
+    goTo: function(idx) {
       if (typeof idx !== 'number') return this;
 
       var prev = this.current;
