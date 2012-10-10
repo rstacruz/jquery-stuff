@@ -10,6 +10,7 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 
 | "Anchorjump"://github.com/rstacruz/jquery-stuff/tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
 | "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow                    | Automatically makes text fields vertically grow in size                            |
+| "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
 | "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
 | "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item.                                             |
 | "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                          | Lightweight notification library                                                   |
