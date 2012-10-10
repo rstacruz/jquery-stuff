@@ -8,7 +8,7 @@
 //     c = new Cycler(list, {
 //       interval: 3000,
 //       initial: 0, /* first slide's index */
-//       onactivate: function(current, old) { ... }, /* Required */
+//       onactivate: function(current, index, oldIndex) { ... }, /* Required */
 //       onstart: function() { ... },
 //       onpause: function() { ... }
 //     });
@@ -27,6 +27,29 @@
 //     c.next();
 //     c.previous();
 //     c.goto(0);
+//
+// The onactivate hook
+// -------------------
+//
+// This is where the magic happens. It's called everytime a new slide is activated.
+//
+// The callback takes three arguments: the current list item (`current`), it's
+// index in the list (`index`), and the index of the previous item (`oldIndex`).
+//
+//     var list = [ 'Apple', 'Banana', 'Cherry' ];
+//
+//     new Cycler(list, {
+//       onactivate: function(current, index, oldIndex) {
+//         console.log("Switching to", current, "(from", oldIndex, "to", index, ")");
+//       };
+//     });
+//
+//     // Result:
+//     //
+//     // Switching to "Apple" (from null to 0)
+//     // Switching to "Banana" (from 0 to 1)
+//     // Switching to "Cherry" (from 1 to 2)
+//     // Switching to "Apple" (from 2 to 0)
 //
 // Pausing
 // -------
