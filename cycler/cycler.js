@@ -150,10 +150,13 @@
     next: function(i) {
       if (typeof i === 'undefined') i = 1;
 
-      // Get the new index
-      i = (this.current + i + this.list.length*2) % this.list.length;
+      var len = this.list.length;
+      if (len === 0) return this;
 
-      return this.goto(i);
+      // Get the index of the new item
+      var idx = (this.current + i + len*2) % len;
+
+      return this.goto(idx);
     },
 
     goto: function(idx) {
