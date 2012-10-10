@@ -33,23 +33,24 @@
 //
 // This is where the magic happens. It's called everytime a new slide is activated.
 //
-// The callback takes three arguments: the current list item (`current`), it's
-// index in the list (`index`), and the index of the previous item (`oldIndex`).
+// The callback takes 4 arguments: the current list item (`current`) + its
+// index in the list (`index`), and the previous item (`prev`) + its index (`prevIndex`).
 //
 //     var list = [ 'Apple', 'Banana', 'Cherry' ];
 //
 //     new Cycler(list, {
-//       onactivate: function(current, index, oldIndex) {
-//         console.log("Switching to", current, "(from", oldIndex, "to", index, ")");
+//       onactivate: function(current, index, prev, prevIndex) {
+//         console.log("Switching from", prev, "to", current);
+//         console.log("(from", prevIndex, "to", index, ")");
 //       };
 //     });
 //
 //     // Result:
 //     //
-//     // Switching to "Apple" (from null to 0)
-//     // Switching to "Banana" (from 0 to 1)
-//     // Switching to "Cherry" (from 1 to 2)
-//     // Switching to "Apple" (from 2 to 0)
+//     // Switching from null to "Apple" (from null to 0)
+//     // Switching from "Apple" to "Banana" (from 0 to 1)
+//     // Switching from "Banana" to "Cherry" (from 1 to 2)
+//     // Switching from "Cherry" to "Apple" (from 2 to 0)
 //
 // Pausing
 // -------
@@ -156,10 +157,12 @@
     },
 
     goto: function(idx) {
-      var old = this.current;
+      if (typeof idx !== 'number') return this;
+
+      var prev = this.current;
       this.current = idx;
 
-      this.onactivate.call(this, this.list[idx], idx, old);
+      this.onactivate.call(this, this.list[idx], idx, this.list[prev], prev);
       this.restart(true);
       return this;
     }
