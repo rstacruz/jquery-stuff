@@ -116,6 +116,7 @@
     // Delays the interval a bit
     restart: function(silent) {
       if (this._timer) this.pause(true).start(silent);
+      return this;
     },
 
     previous: function() {
