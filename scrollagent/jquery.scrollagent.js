@@ -6,7 +6,7 @@
 //
 // Example:
 //
-//      $("h2").scrollagent(function(cid, pid, current, previous) {
+//      $("h2").scrollagent(function(cid, pid, currentElement, previousElement) {
 //        if (pid) {
 //          $("[href='#"+pid+"']").removeClass('active');
 //        }
