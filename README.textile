@@ -23,7 +23,6 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling                                                          |
 | "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport              |
 | "Scrollagent"://github.com/rstacruz/jquery-stuff/tree/master/scrollagent              | Simple scrollspy implementation                                                    |
-| "SerializeHash"://github.com/rstacruz/jquery-stuff/tree/master/serializehash          | Returns a form's values as a dictionary object                                     |
 | "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements                                                                 |
 | "Tabs"://github.com/rstacruz/jquery-stuff/tree/master/tabs                            | Simple tab control                                                                 |
 | "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable                | Simple toggle menu helper                                                          |
