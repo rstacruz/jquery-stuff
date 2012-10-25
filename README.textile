@@ -8,6 +8,7 @@ If you're to use any of these, I encourage you to just drop it into your project
 
 These plugins make great 'starting points' for whatever you'll need. Take them and modify them (or not) as you see fit.
 
+| "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                                     |
 | "Anchorjump"://github.com/rstacruz/jquery-stuff/tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
 | "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow                    | Automatically makes text fields vertically grow in size                            |
 | "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
