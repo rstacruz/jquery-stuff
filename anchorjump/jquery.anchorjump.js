@@ -1,7 +1,4 @@
-/*! ---------------------------------------
- *  Anchorjump
- *  http://github.com/rstacruz/jquery-stuff
- * ---------------------------------------- */
+/*! Anchorjump - http://github.com/rstacruz/jquery-stuff/tree/master/anchorjump */
 
 // Makes anchor jumps happen with smooth scrolling.
 //
@@ -22,10 +19,10 @@
 
 (function($) {
   var defaults = {
-    speed: 500,
-    offset: 0,
-    for: null,
-    parent: null
+    'speed': 500,
+    'offset': 0,
+    'for': null,
+    'parent': null
   };
 
   $.fn.anchorjump = function(options) {
@@ -45,7 +42,7 @@
       var href = $a.attr('href');
 
       $.anchorjump(href, options);
-    };
+    }
   };
 
   // Jump to a given area.
