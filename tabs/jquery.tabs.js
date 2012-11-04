@@ -1,7 +1,5 @@
-/*! ---------------------------------------
- *  Tabs
- *  http://github.com/rstacruz/jquery-stuff
- * ---------------------------------------- */
+/*! jQuery.tabs (c) 2012, Rico Sta. Cruz. MIT License.
+ *  https://github.com/rstacruz/jquery-stuff/tree/master/tabs */
 
 // Simple tabs.
 //
@@ -14,7 +12,7 @@
 //     active: 'active',     /* Classname for active tabs/content areas. */
 //     activate: false       /* Activate the tabs on start. Default: false */
 //   });
-//
+
 (function($) {
   $.fn.tabbed = function(options) {
     var defaults = {
@@ -24,7 +22,7 @@
       activate: false
     };
 
-    options || (options = {});
+    if (!options) options = {};
     options = $.extend({}, defaults, options);
 
     var self = $(this);

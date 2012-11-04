@@ -1,3 +1,6 @@
+/*! jQuery.toggleable (c) 2012, Rico Sta. Cruz. MIT License.
+ *  https://github.com/rstacruz/jquery-stuff/tree/master/toggleable */
+
 // Makes a certain element a toggle-to-activate thing. Clicking the button
 // (the selector defined in `using`) will toggle the 'active' class for both
 // the button and the parent element.
@@ -9,12 +12,10 @@
 // - `sticky` - Defaults to false.
 // - `modal` - Close others when this is opened. Defaults to true.
 // - `clickout` - Allow clicking away. Default to true.
-//
-// http://github.com/rstacruz/jquery-stuff
-//
+
 (function($) {
   $.fn.toggleable = function(options) {
-    options || (options = {});
+    if (!options) options = {};
 
     if (typeof options.modal === 'undefined') options.modal = true;
     if (typeof options.clickout === 'undefined') options.clickout = true;
