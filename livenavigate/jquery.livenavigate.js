@@ -34,5 +34,5 @@
         $(window).trigger('navigate', href);
       }
     });
-  };
+  }
 })(jQuery);
