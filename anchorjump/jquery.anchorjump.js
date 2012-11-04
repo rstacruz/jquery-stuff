@@ -1,4 +1,5 @@
-/*! Anchorjump - http://github.com/rstacruz/jquery-stuff/tree/master/anchorjump */
+/*! Anchorjump (c) 2012, Rico Sta. Cruz. MIT License.
+ *   http://github.com/rstacruz/jquery-stuff/tree/master/anchorjump */
 
 // Makes anchor jumps happen with smooth scrolling.
 //
