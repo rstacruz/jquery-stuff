@@ -28,7 +28,7 @@
   function Timer(delay, fn) {
     this.initialize(delay, fn);
     return this;
-  };
+  }
 
   Timer.prototype = {
     id: null,
@@ -77,7 +77,7 @@
     },
 
     abort: function() {
-      if (this.id != null) {
+      if (this.id !== null) {
         window.clearTimeout(this.id);
         this.id = null;
       }

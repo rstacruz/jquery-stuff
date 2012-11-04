@@ -16,11 +16,11 @@
 
   // Listening to hash
   $.hashListen = function(p, q) {
-    if (typeof p == "string") {
+    if (typeof p === "string") {
       var regex = RegExp("^" + p.replace(/:[a-zA-Z\-\_0-9]+/, "([^/]*)") + "$");
       return $.hashListen.onchange(function(hash) {
         var matches = hash.match(regex);
-        if (matches == null) { return; }
+        if (matches === null) { return; }
         this.matches = matches.slice(1);
         q.apply(this, this.matches);
         return false;
@@ -56,17 +56,17 @@
 
     ontick: function () {
       var hash = window.location.hash.substr(1);
-      if (hash == this.hash) { return; }
+      if (hash === this.hash) { return; }
       this.referrer = this.hash;
       this.hash = hash;
       this.onchange([hash]);
     },
 
     onchange: function (a) {
-      if ($.hashListen._timer == null)
+      if ($.hashListen._timer === null)
         { $(function () { $.hashListen.init(); }); }
 
-      if (typeof a == "function")
+      if (typeof a === "function")
         { this._onchange.push(a); }
 
       else {
