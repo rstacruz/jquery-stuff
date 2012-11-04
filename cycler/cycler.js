@@ -8,7 +8,7 @@
 //     c = new Cycler(list, {
 //       interval: 3000,
 //       initial: 0, /* first slide's index */
-//       onactivate: function(current, index, oldIndex) { ... }, /* Required */
+//       onactivate: function(current, index, prev, prevIndex) { ... }, /* Required */
 //       onstart: function() { ... },
 //       onpause: function() { ... }
 //     });
