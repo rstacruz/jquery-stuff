@@ -8,13 +8,13 @@
   function resetPosition($screen, $el) {
     $screen
       .css({
-        'top':    $el.position().top + parseInt($el.css('margin-top')),
-        'left':   $el.position().left  + parseInt($el.css('margin-left')),
+        'top':    $el.position().top + parseInt($el.css('margin-top'), 10),
+        'left':   $el.position().left  + parseInt($el.css('margin-left'), 10),
         'position': 'absolute',
         'width':  $el.outerWidth(),
         'height': $el.outerHeight()
       });
-  };
+  }
 
   $.uiscreen = $.extend(function(el) {
     $.uiscreen.activate(el);
@@ -66,7 +66,7 @@
         return;
       }
 
-      var speed = (options && (options.speed != undefined)) ? options.speed : this.fadeout_time;
+      var speed = (options && (options.speed !== undefined)) ? options.speed : this.fadeout_time;
 
       $el.data('$screen')
         .addClass('fadeout')
@@ -113,10 +113,12 @@
 
   $.unscreen = function(options) {
     var $parents = $('');
-    for (i in $.uiscreen.$screens) {
-      var screen = $.uiscreen.$screens[i];
-      var $parent = screen.data('parent');
-      if (($parent) && ($parent.unscreen)) { $parent.unscreen(options); }
+    for (var i in $.uiscreen.$screens) {
+      if ($.uiscreen.$screens.hasOwnProperty(i)) {
+        var screen = $.uiscreen.$screens[i];
+        var $parent = screen.data('parent');
+        if (($parent) && ($parent.unscreen)) { $parent.unscreen(options); }
+      }
     }
   };
 
@@ -137,10 +139,12 @@
   // Make sure that all uiscreens hug their parents, literally
   $.uiscreen.autoresize = function() {
     var $parents = $('');
-    for (i in $.uiscreen.$screens) {
-      var screen = $.uiscreen.$screens[i];
-      var $parent = screen.data('parent');
-      if ($parent) { resetPosition($(screen), $parent); }
+    for (var i in $.uiscreen.$screens) {
+      if ($.uiscreen.$screens.hasOwnProperty(i)) {
+        var screen = $.uiscreen.$screens[i];
+        var $parent = screen.data('parent');
+        if ($parent) { resetPosition($(screen), $parent); }
+      }
     }
   };
 
