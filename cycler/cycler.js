@@ -31,11 +31,11 @@
 //     });
 //
 //     // Custom controls example
-//     $(".slideshow-controls button.next").on("click", function() { c.next(); });
-//     $(".slideshow-controls button.prev").on("click", function() { c.previous(); });
+//     $parent.find("button.next").on("click", function() { c.next(); });
+//     $parent.find("button.prev").on("click", function() { c.previous(); });
 //
 //     // Pause on hover example
-//     $(".slideshow").on("hover", function() { c.pause(); }, function() { c.start(); });
+//     $parent.on("hover", function() { c.pause(); }, function() { c.start(); });
 //
 // Navigating
 // ----------
