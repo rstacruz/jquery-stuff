@@ -1,24 +1,21 @@
+/*! jQuery.preventOverscroll (c) 2012, Rico Sta. Cruz. MIT License.
+ *  https://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll */
+
+// If you have an element with overflow: auto (or overflow: scroll), and you
+// try to use your mouse wheel to scroll it, the document will probably scroll
+// once your scroll pane is at its boundaries.
+//
+//     <!-- Once this hits the bottom of the scroll pane, using the
+//          mouse wheel to scroll will scroll the document. Not good. -->
+//
+//     <div class="scrollable">...</div>
+//     .scrollable { overflow: auto; height: 200px; }
+//
+// Simply use .preventOverscroll() to stop this behavior.
+//
+//     $(".scrollable").preventOverscroll();
+
 (function($) {
-
-  // ---------------------------------------
-  // PreventOverscroll
-  // http://github.com/rstacruz/jquery-stuff
-  // ---------------------------------------
-
-  // If you have an element with overflow: auto (or overflow: scroll), and you
-  // try to use your mouse wheel to scroll it, the document will probably scroll
-  // once your scroll pane is at its boundaries.
-  //
-  //     <!-- Once this hits the bottom of the scroll pane, using the
-  //          mouse wheel to scroll will scroll the document. Not good. -->
-  //
-  //     <div class="scrollable">...</div>
-  //     .scrollable { overflow: auto; height: 200px; }
-  //
-  // Simply use .preventOverscroll() to stop this behavior.
-  //
-  //     $(".scrollable").preventOverscroll();
-  //
   $.fn.preventOverscroll = function() {
     // For WebKits, et al.
     if ('onmousewheel' in document.documentElement) {
@@ -71,7 +68,7 @@
           up:    vert  && delta < 0,
           left:  horiz && delta < 0,
           right: horiz && delta > 0
-        }
+        };
 
         if (shouldStop($this, scrolling)) {
           e.preventDefault();
@@ -100,5 +97,4 @@
       );
     }
   };
-
 })(jQuery);
