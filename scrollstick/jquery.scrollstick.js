@@ -1,7 +1,5 @@
-/*! ---------------------------------------
- *  Scrollstick
- *  http://github.com/rstacruz/jquery-stuff
- * ---------------------------------------- */
+/*! jQuery.scrollstick (c) 2012, Rico Sta. Cruz. MIT License.
+ *  https://github.com/rstacruz/jquery-stuff/tree/master/scrollstick */
 
 // Makes something stick to the top when it gets scrolled away from.
 //

@@ -1,4 +1,5 @@
-/* jQuery scrollagent (c) 2012 Rico Sta. Cruz, MIT License. */
+/*! jQuery.scrollagent (c) 2012, Rico Sta. Cruz. MIT License.
+ *  https://github.com/rstacruz/jquery-stuff/tree/master/scrollagent */
 
 // Call $(...).scrollagent() with a callback function.
 //
@@ -14,7 +15,7 @@
 //          $("[href='#"+cid+"']").addClass('active');
 //        }
 //      });
-//
+
 (function($) {
 
   $.fn.scrollagent = function(options, callback) {
