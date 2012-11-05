@@ -1,46 +1,50 @@
-// jQuery.ellipsify
-// Rico Sta. Cruz 2011
-// Based on http://snipplr.com/view/46615
-//
+/*! jQuery.ellipsify (c) 2011-2012, Rico Sta. Cruz. MIT License.
+ *  Based on http://snipplr.com/view/46615
+ *  https://github.com/rstacruz/jquery-stuff/tree/master/ellipsify */
+
 // Usage:
-//   $("article h2").livequery(function() { $(this).ellipsify(); });
-//
-jQuery.fn.ellipsify = function() {
-  var $this = $(this);
+//   $("article h2").ellipsify();
 
-  if ($this.length > 1) {
-    return $this.each(function() { $(this).ellipsify(); });
-  }
+(function($) {
+  $.fn.ellipsify = function() {
+    var $this = $(this);
 
-  var $clone    = $this.clone();
-  var text      = $this.html();
-  var shortened = false;
-  var offset    = 2;
+    if ($this.length > 1) {
+      return $this.each(function() { $(this).ellipsify(); });
+    }
 
-  $clone.css({
-    display: 'none',
-    position: 'absolute',
-    overflow: 'visible',
-    width:  $this.width(),
-    height: 'auto'});
+    var $clone    = $this.clone();
+    var text      = $this.html();
+    var shortened = false;
+    var offset    = 2;
 
-  $this.after($clone);
+    $clone.css({
+      display: 'none',
+      position: 'absolute',
+      overflow: 'visible',
+      width:  $this.width(),
+      height: 'auto'});
 
-  function tooBig() {
-    return $clone.outerHeight() > ($this.outerHeight() + offset);
-  }
+    $this.after($clone);
 
-  while (text.length > 0 && tooBig()) {
-    shortened = true;
-    text = text.substr(0, text.lastIndexOf(' '));
-    $clone.html(text + '&hellip;');
-  }
+    function tooBig() {
+      return $clone.outerHeight() > ($this.outerHeight() + offset);
+    }
 
-  // Tooltip
-  if ((shortened) && (!$this.attr('title'))) {
-    $this.attr('title', $this.text());
-  }
+    while (text.length > 0 && tooBig()) {
+      shortened = true;
+      text = text.substr(0, text.lastIndexOf(' '));
+      $clone.html(text + '&hellip;');
+    }
 
-  $this.html($clone.html());
-  $clone.remove();
-};
+    // Tooltip
+    if ((shortened) && (!$this.attr('title'))) {
+      $this.attr('title', $this.text());
+    }
+
+    $this.html($clone.html());
+    $clone.remove();
+
+    return this;
+  };
+})(jQuery);
