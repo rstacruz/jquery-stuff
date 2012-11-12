@@ -11,7 +11,7 @@
         var stripped = text.replace(/^\s*|\s*$/g, ' ');
         var spaces   = stripped.match(/ /g).length;
 
-        if (spaces > 0) {
+        if (spaces > 1) {
           last.nodeValue = last.nodeValue.replace(/\s*([^\s]+\s*)$/g, '\xA0$1');
         }
       }
