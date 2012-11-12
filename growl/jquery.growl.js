@@ -1,3 +1,6 @@
+/*! jQuery.growl (c) 2010-12, Rico Sta. Cruz. MIT License.
+ *   http://github.com/rstacruz/jquery-stuff/tree/master/growl */
+
 // Usage:
 //
 //   $.growl("Message");
