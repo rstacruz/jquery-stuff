@@ -60,7 +60,14 @@
         if ($parent.length) { $area = $parent; }
       }
       if (!$area.length) { return; }
-      top = $area.offset().top + options.offset;
+
+      // Determine the pixel offset; use the default if not available
+      var offset =
+        $area.attr('data-anchor-offset') ?
+        parseInt($area.attr('data-anchor-offset'), 10) :
+        options.offset;
+
+      top = $area.offset().top + offset;
     }
 
     $('html, body').animate({ scrollTop: top }, options.speed);
