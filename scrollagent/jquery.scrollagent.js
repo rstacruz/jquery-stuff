@@ -31,8 +31,12 @@
     // Find the top offsets of each section
     var offsets = [];
     $sections.each(function(i) {
+      var offset = $(this).attr('data-anchor-offset') ?
+        parseInt($(this).attr('data-anchor-offset'), 10) :
+        (options.offset || 0);
+
       offsets.push({
-        top: $(this).offset().top,
+        top: $(this).offset().top + offset,
         id: $(this).attr('id'),
         index: i,
         el: this
