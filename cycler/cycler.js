@@ -114,7 +114,7 @@
     this.current    = null;
 
     this.goTo(this.initial);
-    this.start();
+    if (typeof options.interval === 'number') this.start();
 
     return this;
   }
