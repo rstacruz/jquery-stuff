@@ -67,7 +67,7 @@
         parseInt($area.attr('data-anchor-offset'), 10) :
         options.offset;
 
-      top = $area.offset().top + offset;
+      top = Math.max(0, $area.offset().top + offset);
     }
 
     $('html, body').animate({ scrollTop: top }, options.speed);
