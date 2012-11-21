@@ -20,7 +20,7 @@
 //
 (function($) {
   $.fn.scrollstick = function(options) {
-    var reposition, $this = this;
+    var reposition, onscroll, $this = this;
     if (!this.length) return;
 
     this.data('stuck', false);
@@ -37,10 +37,10 @@
 
     var $clone;
     var $parent;
-    var old;
 
     // On resizing, reposition the top/left/right of the cloned element.
     $(window).on('resize', reposition = function() {
+      options.min = $this.offset().top;
       if ((!$clone) || (!$this.data('stuck'))) return;
 
       $this.css({
@@ -53,7 +53,7 @@
       });
     });
 
-    $(window).on('scroll', function() {
+    $(window).on('scroll', onscroll = function() {
       var pos = $(window).scrollTop();
       var inside = pos > (options.min - options.offset);
       var stuck = $this.data('stuck');
@@ -64,15 +64,6 @@
         $this.data('stuck', true);
         $this.addClass('stuck');
         $parent = $this.parent();
-
-        // Keep old values.
-        old = {
-          position: $this.css('position'),
-          top: $this.css('top'),
-          left: $this.css('left'),
-          right: $this.css('right'),
-          margin: $this.css('margin')
-        };
 
         // Make a placeholder.
         $clone = $this.clone();
@@ -85,8 +76,7 @@
 
       // Move it away when you've reached the max.
       if ((typeof options.max === 'number') && (stuck)) {
-        var exiting;
-        exiting = (pos > options.max - options.offset);
+        var exiting = (pos > options.max);
 
         if ((exiting) && ($this.css('position') !== 'absolute')) {
           $this
@@ -107,9 +97,13 @@
         $this.removeClass('stuck');
 
         // Either kill the clone, or just hide it
-        $this.css({ position: old.position, top: old.top, left: old.left, right: old.right, margin: old.margin });
+        $this.attr('style', '');
         $clone.remove();
       }
     });
+
+    // Fix bug in Firefox where scroll event isn't triggered after reloading
+    // in the middle of a page
+    $(onscroll);
   };
 })(jQuery);
