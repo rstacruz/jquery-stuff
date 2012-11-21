@@ -61,6 +61,8 @@
 
       $menus.trigger('active:off');
     });
+
+    return this;
   };
 
 })(jQuery);
