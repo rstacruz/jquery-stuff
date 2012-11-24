@@ -21,6 +21,7 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen                    | Blacks out things                                                                  |
 | "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan                    | Prevents text orphans                                                              |
 | "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
+| "MailcheckHint"://github.com/rstacruz/jquery-stuff/tree/master/mailcheckhint          | Simple one-shot integration with Kicksend Mailcheck                                |
 | "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                                        |
 | "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling                                                          |
 | "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport              |
