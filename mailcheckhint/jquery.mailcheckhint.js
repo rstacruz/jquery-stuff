@@ -14,7 +14,7 @@
 // Customization can be done with all these optional args:
 //
 //     $('input.email').enableMailcheckHint({
-//       message: 'Ibig mo bang sabihin ay %s?',
+//       message: 'Ibig mo bang sabihin ay %{email}?',
 //       hintElement: '<div class="hinttext">',
 //       append:  function($input, $hint) { $input.closest('.field').append($hint); },
 //       dismiss: function($input, $hint) { $hint.remove(); $input.addClass('ok'); }
