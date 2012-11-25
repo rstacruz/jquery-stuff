@@ -82,16 +82,15 @@
 
           // Add handler
           $hint.on('click', function(e) {
-            // Save focus
-            var $focus = $(':focus');
-
             // Accept suggestion
             e.preventDefault();
             $input.val(suggestion.full);
             options.dismiss($input, $hint);
             $hint = null;
 
-            // Restore focus
+            // Move to the next
+            var $inputs = $(':input');
+            var $focus  = $inputs.get($inputs.index($input) + 1);
             $focus.focus();
           });
 
