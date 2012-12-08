@@ -1,11 +1,17 @@
 // Usage:
 //
+//   /* Full */
+//   $("body").screen();
+//
+//   /* Single element */
 //   $("#element").screen();
 //   $("#element").unscreen();
+//
 //   $.unscreen(); // remove all screens
 //
 ;(function($) {
   function resetPosition($screen, $el) {
+    if ($el.is('body')) return;
     $screen
       .css({
         'top':    $el.position().top + parseInt($el.css('margin-top'), 10),
@@ -23,9 +29,8 @@
     $screens: [],
 
     // Options
-    background: '#555555',
-    opacity: 0.5,
-    screen_template: "<div class='uiscreen'><div class='uiscreen-spinner'></div></div>",
+    opacity: 1.0,
+    screen_template: "<div class='uiscreen'><div class='uiscreen-screen'></div><div class='uiscreen-spinner'></div></div>",
     z_index: 10010,
     fadein_time: 250,
     fadeout_time: 0,
@@ -46,6 +51,7 @@
       resetPosition($screen, $el);
 
       $el.offsetParent().append($screen);
+
       $screen
         .data('parent', $el)
         .attr('id', id)
@@ -100,8 +106,12 @@
           })
           .hide();
 
-      if (this.background)
-        { $screen.css({ 'background': this.background }); }
+      // Fullscreen if body
+      if ($el.is('body')) {
+        $screen.css({ 'position': 'fixed',
+          top: 0, left: 0, width: 'auto', height: 'auto',
+          right: 0, bottom: 0 });
+      }
 
       $(document.body).append($screen);
       this.$screens.push($screen);

@@ -11,10 +11,13 @@ These plugins make great 'starting points' for whatever you'll need. Take them a
 | "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                                     |
 | "Anchorjump"://github.com/rstacruz/jquery-stuff/tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
 | "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow                    | Automatically makes text fields vertically grow in size                            |
+| "ButtonLoading"://github.com/rstacruz/jquery-stuff/tree/master/buttonloading          | Show 'loading...' text on buttons                                                  |
 | "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
 | "Console Shim"://github.com/rstacruz/jquery-stuff/tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
 | "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
-| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item.                                             |
+| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                              |
+| "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                                            |
+| "Fillsize"://github.com/rstacruz/jquery-stuff/tree/master/fillsize                    | Makes an element fill up its container                                             |
 | "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                          | Lightweight notification library                                                   |
 | "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
 | "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder              | Input text placeholders, fork of Vadim Sitel's work                                |
