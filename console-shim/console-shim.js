@@ -9,11 +9,9 @@
 
   if (!console) console = window.console = {};
 
-  for (var i in methods) {
-    if (methods.hasOwnProperty(i)) {
-      var fn = methods[i];
-      if (!console[fn]) console[fn] = (function() {});
-    }
+  for (var i=0; i < methods.length; i++) {
+    var fn = methods[i];
+    if (!console[fn]) console[fn] = (function() {});
   }
 
 })(window.console);
