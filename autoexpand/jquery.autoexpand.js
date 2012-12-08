@@ -22,7 +22,7 @@
 //
 //     $("#myform textarea").autoexpand();
 //
-// First based on: http://code.google.com/p/gaequery/source/browse/trunk/src/static/scripts/jquery.autoexpand-textarea.js?r=2
+// First based on: http://code.google.com/p/gaequery/source/browse/trunk/src/static/scripts/jquery.autogrow-textarea.js?r=2
 
 (function($) {
 

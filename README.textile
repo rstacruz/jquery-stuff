@@ -42,16 +42,15 @@ h3. Niche uses
 Useful in some rarer cases.
 
 | "Fillsize"://github.com/rstacruz/jquery-stuff/tree/master/fillsize                    | Makes an element fill up its container                                             |
-| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
 | "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements                                                                 |
 | "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *                        | General-purpose wrapper for setTimeout                                             |
 
-h3. Kinda deprecated
+h3. Kinda deprecated / obsolete
 
-I don't find myself using these often. Mostly because HTML5 has made them kind of obsolete, or better libraries are out there.
+I don't find myself using these often anymore. Or, at all. But they work!
 
 | "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
-| "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder              | Input text placeholders, fork of Vadim Sitel's work                                |
+| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
 
 _* = no dependency on jQuery_
 
