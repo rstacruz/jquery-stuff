@@ -60,8 +60,6 @@
       extraLines: 0,     /* Extra padding (in number of lines) */
       preempt: true,     /* Preemptively add a new line before it reaches the end */
       preemptLength: 4,  /* Make a new line 4 letters before the end */
-      scroll: false,     /* Hide scrollbars if false (default). Set to `true` to leave scrollbars alone. */
-      useHeight: true,   /* Base the minimum height to the current `height` attribute. `false` to disable. */
       speed: 100         /* Fancyness, set to `0` to disable */
     };
 
@@ -85,14 +83,11 @@
         $textarea.data('shadow', $shadow);
       }
 
-      // This determines how we set the width/height of the elements
+      // Get the min-height. This takes `rows`, `min-height` and `height` into
+      // consideration (thanks, browsers)
       var isFull = ($textarea.css('box-sizing') === 'border-box');
-
-      var minHeight = int($textarea.css('min-height'));
-      if (options.useHeight) {
-        var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
-        minHeight = Math.max(minHeight, int(height));
-      }
+      var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
+      var minHeight = Math.max(minHeight, int(height));
 
       $shadow.css({
         position:  'absolute',
@@ -117,10 +112,7 @@
     var initTextarea = function($textarea) {
       // Disable the resize gripper, manually resizing will interfere with
       // the autoexpand logic
-      $textarea.css({ 'resize': 'none' });
-      if (options.scroll === false) {
-        $textarea.css({ overflow: 'hidden' });
-      }
+      $textarea.css({ resize: 'none', overflow: 'hidden' });
 
       if (options.speed) {
         addTransition($textarea, 'height ' + options.speed + 'ms ease-in');
@@ -133,7 +125,6 @@
       // Sanity check: don't do anything if called prematurely
       if (!$textarea.length) return;
 
-      // Get or build the shadow
       var $shadow = $textarea.data('shadow') || updateShadow.apply(this);
 
       // Build the value for the shadow. (preempt uses 'w' because it's the
@@ -144,10 +135,8 @@
 
       $shadow.html(val);
 
-      // This determines how we set the width/height of the elements
       var isFull = ($textarea.css('box-sizing') === 'border-box');
 
-      // Find the target height
       var height = isFull ? $shadow.outerHeight() : $shadow.css('height');
       var maxHeight = int($textarea.css('max-height'));
       if ((maxHeight) && (height >= maxHeight)) height = maxHeight;
@@ -155,7 +144,7 @@
       $textarea.css('height', height);
 
       // If we've reached your max-height, show the scrollbars
-      if ((maxHeight !== null) && (scroll === false)) {
+      if (maxHeight !== null) {
         if (height === maxHeight) {
           $textarea.css({ 'overflow-y': 'auto' });
         } else {
