@@ -7,30 +7,36 @@
 //
 // The image doesn't have to be in the DOM at time of calling.
 //
+// Tip: add `opacity: 0` and the expected `width` and `weight` to the image in
+// the CSS so that it will be invisible before scripts can be called. This
+// prevents the image from 'peeking' before fading in.
+//
 (function($) {
-  function addStyles(styles) {
-    $('head').append($("<style type='text/css'>").html(styles));
-  }
-
   $.fn.fadeonload = function() {
     var $image = this;
 
-    // Ensure that the image begins with 0 opacity by adding a new stylesheet.
-    // Note that this will not work for things like `$(".foo").children()`
-    addStyles(this.selector + " { opacity: 0; }");
-
-    // On load, fade it in. Relies on jQ 1.8+ to do vendor-prefix-free
-    // transitions.
-    this.on('load', function() {
-      $(this).css({ opacity: 1, transition: 'opacity 400ms linear' });
-    });
-
-    // On document load (or immediately), if images are cached (and hence
-    // "loaded" before the document DOM), manually trigger their fading in.
     $(function() {
       $image.each(function() {
-        if (this.complete) $(this).trigger('load');
+        // On document load (or immediately), if images are cached (and hence
+        // "loaded" before the document DOM), manually trigger their fading in.
+        if (this.complete) {
+          $(this).trigger('load');
+        }
+        else {
+          $(this).css({ opacity: 0 });
+        }
       });
+    });
+
+    // On load, fade it in. Relies on jQ 1.8+ to do vendor-prefix-free
+    // transitions. The timer is there to ensure that this happens after
+    // other JS logic that may be attached to the image.
+    this.on('load', function() {
+      var $image = $(this);
+      $image.show().css({ opacity: 0 });
+      setTimeout(function() {
+        $image.css({ opacity: 1, transition: 'opacity 400ms linear' });
+      }, 25);
     });
 
     return this;
