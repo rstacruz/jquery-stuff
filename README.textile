@@ -8,31 +8,50 @@ If you're to use any of these, I encourage you to just drop it into your project
 
 These plugins make great 'starting points' for whatever you'll need. Take them and modify them (or not) as you see fit.
 
-| "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                                     |
+h3. Superuseful
+
+These things become useful in most sites/webapps I work on.
+
 | "Anchorjump"://github.com/rstacruz/jquery-stuff/tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
 | "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow                    | Automatically makes text fields vertically grow in size                            |
 | "ButtonLoading"://github.com/rstacruz/jquery-stuff/tree/master/buttonloading          | Show 'loading...' text on buttons                                                  |
-| "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
 | "Console Shim"://github.com/rstacruz/jquery-stuff/tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
-| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
 | "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                              |
-| "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                                            |
-| "Fillsize"://github.com/rstacruz/jquery-stuff/tree/master/fillsize                    | Makes an element fill up its container                                             |
 | "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                          | Lightweight notification library                                                   |
-| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
-| "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder              | Input text placeholders, fork of Vadim Sitel's work                                |
-| "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen                    | Blacks out things                                                                  |
-| "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan                    | Prevents text orphans                                                              |
-| "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
 | "MailcheckHint"://github.com/rstacruz/jquery-stuff/tree/master/mailcheckhint          | Simple one-shot integration with Kicksend Mailcheck                                |
-| "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                                        |
-| "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling                                                          |
-| "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport              |
 | "Scrollagent"://github.com/rstacruz/jquery-stuff/tree/master/scrollagent              | Simple scrollspy implementation                                                    |
-| "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements                                                                 |
 | "Tabs"://github.com/rstacruz/jquery-stuff/tree/master/tabs                            | Simple tab control                                                                 |
 | "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable                | Simple toggle menu helper                                                          |
+| "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen                    | Blacks out things                                                                  |
+| "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan                    | Prevents text orphans                                                              |
+
+h3. Quite useful
+
+Still very useful in a lot of common cases, but not as common as the ones above.
+
+| "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                                     |
+| "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
+| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
+| "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                                            |
+| "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                                        |
+| "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel                           |
+| "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport              |
+
+h3. Niche uses
+
+Useful in some rarer cases.
+
+| "Fillsize"://github.com/rstacruz/jquery-stuff/tree/master/fillsize                    | Makes an element fill up its container                                             |
+| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
+| "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements                                                                 |
 | "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *                        | General-purpose wrapper for setTimeout                                             |
+
+h3. Kinda deprecated
+
+I don't find myself using these often. Mostly because HTML5 has made them kind of obsolete, or better libraries are out there.
+
+| "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
+| "Placeholder"://github.com/rstacruz/jquery-stuff/tree/master/placeholder              | Input text placeholders, fork of Vadim Sitel's work                                |
 
 _* = no dependency on jQuery_
 
