@@ -67,16 +67,14 @@
         addTransition($textarea, 'height ' + options.speed + 'ms ease-in');
       }
 
-      // Get the minimum height for the textarea. It will also be based on the
-      // `height` property if `useHeight` is on
-      var minHeight, maxHeight;
-
-      // This determines how we set the width/height of the elements.
-      var isFull = ($textarea.css('box-sizing') === 'border-box');
+      var minHeight, maxHeight, isFull;
 
       // The event handler that updates the 'shadow' div -- done on every
       // window resize to handle resizing of the textarea.
       var updateShadow = function() {
+        // This determines how we set the width/height of the elements.
+        isFull = ($textarea.css('box-sizing') === 'border-box');
+
         maxHeight = parseInt($textarea.css('max-height'), 10);
         if (isNaN(maxHeight)) maxHeight = null;
 
@@ -125,7 +123,6 @@
             $textarea.css({ 'overflow-y': 'hidden' });
           }
         }
-
       };
 
       // Underscore.js bonus! If underscore.js is available, don't call the updating logic
@@ -176,4 +173,5 @@
     value += transition;
     return $el.css({ transition: value });
   }
+
 })(jQuery);
