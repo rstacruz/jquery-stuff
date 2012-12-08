@@ -1,9 +1,9 @@
-/*! autogrow (c) 2012, Rico Sta. Cruz. MIT License.
- *  http://github.com/rstacruz/jquery-stuff/tree/master/autogrow */
+/*! autoexpand (c) 2012, Rico Sta. Cruz. MIT License.
+ *  http://github.com/rstacruz/jquery-stuff/tree/master/autoexpand */
 
 // Makes a textarea automatically grow as you type.
 //
-//     $("#myform textarea").autogrow();
+//     $("#myform textarea").autoexpand();
 //
 // The textarea *must* exist at the time this is called.
 //
@@ -15,16 +15,18 @@
 // For those that are multiline by default, this (below) works well. The extra
 // padding makes it inviting to add more text.
 //
-//     $("#myform textarea").autogrow({ extraLines: 1 });
+//     $("#myform textarea").autoexpand({ extraLines: 1 });
 //
 // For multiline textboxes that masquerade as non-multilines, just use it as
 // is.
 //
-//     $("#myform textarea").autogrow();
+//     $("#myform textarea").autoexpand();
+//
+// First based on: http://code.google.com/p/gaequery/source/browse/trunk/src/static/scripts/jquery.autoexpand-textarea.js?r=2
 
 (function($) {
 
-  $.fn.autogrow = function(options) {
+  $.fn.autoexpand = function(options) {
     var defaults = {
       extraLines: 0,     /* Extra padding (in number of lines) */
       scroll: false,     /* Hide scrollbars if false (default). Set to `true` to leave scrollbars alone. */
@@ -42,20 +44,20 @@
     this.filter('textarea').each(function() {
       var $textarea = $(this);
 
-      // Sanity check: don't apply the events more than once. If .autogrow() is
+      // Sanity check: don't apply the events more than once. If .autoexpand() is
       // called again, it will merely update the height as needed.
-      if ($textarea.data('autogrow')) {
-        $textarea.trigger('autogrow');
+      if ($textarea.data('autoexpand')) {
+        $textarea.trigger('autoexpand');
         return;
       }
 
-      $textarea.data('autogrow', true);
+      $textarea.data('autoexpand', true);
 
       // Create a 'shadow' div that has the same style as the original.
-      var $shadow = $('<div class="autogrow-shadow">').appendTo(document.body);
+      var $shadow = $('<div class="autoexpand-shadow">').appendTo(document.body);
 
       // Disable the resize gripper, manually resizing will interfere with
-      // the autogrow logic
+      // the autoexpand logic
       $textarea.css({ 'resize': 'none' });
       if (options.scroll === false) {
         $textarea.css({ overflow: 'hidden' });
@@ -142,8 +144,8 @@
       $textarea.on('change keyup', updateHeight);
       $(window).on('resize', updateAll);
 
-      // Allow manually updating the height via `.trigger('autogrow')`
-      $textarea.on('autogrow', updateAll);
+      // Allow manually updating the height via `.trigger('autoexpand')`
+      $textarea.on('autoexpand', updateAll);
     });
 
     return this;

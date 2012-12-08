@@ -13,7 +13,7 @@ h3. Super-useful
 These things are often basic features that most sites/webapps I work on need.
 
 | "Anchorjump"://github.com/rstacruz/jquery-stuff/tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
-| "Autogrow"://github.com/rstacruz/jquery-stuff/tree/master/autogrow                    | Automatically makes text fields auto-size its height                               |
+| "Autoexpand"://github.com/rstacruz/jquery-stuff/tree/master/autoexpand                | Makes text fields auto-size its height                                             |
 | "ButtonLoading"://github.com/rstacruz/jquery-stuff/tree/master/buttonloading          | Show 'loading...' text on buttons                                                  |
 | "Console Shim"://github.com/rstacruz/jquery-stuff/tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
 | "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                              |
