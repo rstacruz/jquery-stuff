@@ -16,7 +16,6 @@ These things are often basic features that most sites/webapps I work on need.
 | "Autoexpand"://github.com/rstacruz/jquery-stuff/tree/master/autoexpand                | Makes text fields auto-size its height                                             |
 | "ButtonLoading"://github.com/rstacruz/jquery-stuff/tree/master/buttonloading          | Show 'loading...' text on buttons                                                  |
 | "Console Shim"://github.com/rstacruz/jquery-stuff/tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
-| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                              |
 | "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                          | Lightweight notification library                                                   |
 | "MailcheckHint"://github.com/rstacruz/jquery-stuff/tree/master/mailcheckhint          | Simple one-shot integration with Kicksend Mailcheck                                |
 | "Scrollagent"://github.com/rstacruz/jquery-stuff/tree/master/scrollagent              | Simple scrollspy implementation                                                    |
@@ -32,6 +31,7 @@ Still very useful in a lot of common cases, but not as common as the ones above.
 | "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                                     |
 | "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
 | "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
+| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                              |
 | "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                                            |
 | "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                                        |
 | "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel                           |
