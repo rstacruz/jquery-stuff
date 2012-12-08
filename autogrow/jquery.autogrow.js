@@ -57,6 +57,9 @@
       // Create a 'shadow' div that has the same style as the original.
       var $shadow = $('<div class="autogrow-shadow">').appendTo(document.body);
 
+      // Disable the resize gripper, manually resizing will interfere with
+      // the autogrow logic
+      $textarea.css({ 'resize': 'none' });
       if (options.scroll === false) {
         $textarea.css({ overflow: 'hidden' });
       }
