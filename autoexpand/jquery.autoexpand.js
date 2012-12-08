@@ -5,9 +5,11 @@
 //
 //     $("#myform textarea").autoexpand();
 //
-// The textarea *must* exist at the time this is called.
+// The textarea does not exist at the time this is called. (However, see
+// 'Caveats' below)
 //
-// Also, you can define the minimum height via CSS's `min-height`.
+// You can define the maximum height via CSS's `max-height`. Autoexpand also
+// respects CSS's `min-height` & `height`, and HTML's `rows` attribute.
 //
 // Basic usage
 // -----------
