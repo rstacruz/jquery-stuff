@@ -70,11 +70,7 @@
 
       // Get the minimum height for the textarea. It will also be based on the
       // `height` property if `useHeight` is on
-      var minHeight = parseInt($textarea.css('min-height'), 10);
-      if (options.useHeight) {
-        var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
-        minHeight = Math.max(minHeight, parseInt(height, 10));
-      }
+      var minHeight, maxHeight;
 
       // The event handler that updates the 'shadow' div -- done on every
       // window resize to handle resizing of the textarea.
@@ -92,9 +88,19 @@
           padding:    $textarea.css('padding'),
           wordWrap:   $textarea.css('word-wrap'),
           whiteSpace: $textarea.css('white-space'),
+          maxHeight:  $textarea.css('max-height'),
           visibility: 'hidden',
           resize:     'none'
         });
+
+        maxHeight = parseInt($textarea.css('max-height'), 10);
+        if (isNaN(maxHeight)) maxHeight = null;
+
+        minHeight = parseInt($textarea.css('min-height'), 10);
+        if (options.useHeight) {
+          var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
+          minHeight = Math.max(minHeight, parseInt(height, 10));
+        }
       };
 
       // The event handler for updates: update the 'shadow' box with the same
@@ -107,6 +113,16 @@
 
         var height = isFull ? $shadow.outerHeight() : $shadow.css('height');
         $textarea.css('height', height);
+
+        // If you've reached your max-height, show the scrollbars.
+        if ((maxHeight !== null) && (scroll === false)) {
+          if (height >= maxHeight) {
+            $textarea.css({ 'overflow-y': 'auto' });
+          } else {
+            $textarea.css({ 'overflow-y': 'hidden' });
+          }
+        }
+
       };
 
       // Underscore.js bonus! If underscore.js is available, don't call the updating logic
