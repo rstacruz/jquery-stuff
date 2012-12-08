@@ -9,20 +9,33 @@
 //
 // Also, you can define the minimum height via CSS's `min-height`.
 //
-// Suggested usage
-// ---------------
+// Basic usage
+// -----------
 //
 // This is a sensible default:
 //
-//     $("textarea.autoexpand").autoexpand({ extraLines: 1 });
-//     $("textarea.autoexpand-single").autoexpand();
+//     $("textarea.autoexpand").autoexpand();
 //
-// Make your multiline textareas `.autoexpand`. The extra padding makes it
-// inviting to type more text in.
+// Now add `.autoexpand` to your textareas.
 //
-// For single-line textareas, add `.autoexpand-single` to them. This is for
-// textareas that are just one-line high but are supposed to expand to more
-// lines, like the Facebook comments area.
+// Suggested usage
+// ---------------
+//
+// Personally, I prefer this variation:
+//
+//     $("textarea.autoexpand:not([rows='1'])").autoexpand({ extraLines: 1 });
+//     $("textarea.autoexpand[rows='1']").autoexpand();
+//
+// This makes `<textarea rows=1>` behave like a normal `<input type=text>`,
+// except that it automatically grows as needed.  This is much like Facebook's
+// comments field. Use this for inputs that are meant to take just a single
+// line.
+//
+// For other textareas, you get one extra line. This makes pressing Return on
+// those textareas not feel awkward.
+//
+// Caveat
+// ------
 //
 // If you're going to create these textareas dynamically, or update their
 // content dynamically, you'll need to retrigger the autoexpand event to resize
@@ -43,6 +56,8 @@
 
     var defaults = {
       extraLines: 0,     /* Extra padding (in number of lines) */
+      preempt: true,     /* Preemptively add a new line before it reaches the end */
+      preemptLength: 4,  /* Make a new line 4 letters before the end */
       scroll: false,     /* Hide scrollbars if false (default). Set to `true` to leave scrollbars alone. */
       useHeight: true,   /* Base the minimum height to the current `height` attribute. `false` to disable. */
       speed: 100         /* Fancyness, set to `0` to disable */
@@ -50,10 +65,6 @@
 
     if (!options) options = {};
     options = $.extend({}, defaults, options);
-
-    // Disable speed if extraLines = 0. With no extra padding, it will look
-    // weird, no matter what.
-    if (options.extraLines === 0) options.speed = 0;
 
     // The event handler that updates the 'shadow' div -- done on every
     // window resize to handle resizing of the textarea.
@@ -123,8 +134,10 @@
       // Get or build the shadow
       var $shadow = $textarea.data('shadow') || updateShadow.apply(this);
 
-      // Build the value for the shadow
+      // Build the value for the shadow. (preempt uses 'w' because it's the
+      // widest in most fonts)
       var val = htmlescape($textarea.val());
+      if (options.preempt) val += ' ' + times('w', options.preemptLength);
       if (options.extraLines > 0) val += times('<br/>&nbsp;', options.extraLines);
 
       $shadow.html(val);
@@ -148,13 +161,6 @@
         }
       }
     };
-
-    // Underscore.js bonus! If underscore.js is available, don't call the updating logic
-    // too often to improve performance for fast typers.
-    if (typeof window._ === 'function' && typeof _.throttle === 'function') {
-      updateHeight = _.throttle(updateHeight, 25);
-      updateShadow = _.throttle(updateShadow, 25);
-    }
 
     var updateAll = function() { updateShadow.apply(this); updateHeight.apply(this); };
 
