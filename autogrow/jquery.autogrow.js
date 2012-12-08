@@ -51,9 +51,6 @@
 
       $textarea.data('autogrow', true);
 
-      // This determines how we set the width/height of the elements.
-      var isFull = ($textarea.css('box-sizing') === 'border-box');
-
       // Create a 'shadow' div that has the same style as the original.
       var $shadow = $('<div class="autogrow-shadow">').appendTo(document.body);
 
@@ -72,9 +69,21 @@
       // `height` property if `useHeight` is on
       var minHeight, maxHeight;
 
+      // This determines how we set the width/height of the elements.
+      var isFull = ($textarea.css('box-sizing') === 'border-box');
+
       // The event handler that updates the 'shadow' div -- done on every
       // window resize to handle resizing of the textarea.
       var updateShadow = function() {
+        maxHeight = parseInt($textarea.css('max-height'), 10);
+        if (isNaN(maxHeight)) maxHeight = null;
+
+        minHeight = parseInt($textarea.css('min-height'), 10);
+        if (options.useHeight) {
+          var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
+          minHeight = Math.max(minHeight, parseInt(height, 10));
+        }
+
         $shadow.css({
           position:  'absolute',
           top:        -10000,
@@ -88,19 +97,9 @@
           padding:    $textarea.css('padding'),
           wordWrap:   $textarea.css('word-wrap'),
           whiteSpace: $textarea.css('white-space'),
-          maxHeight:  $textarea.css('max-height'),
           visibility: 'hidden',
           resize:     'none'
         });
-
-        maxHeight = parseInt($textarea.css('max-height'), 10);
-        if (isNaN(maxHeight)) maxHeight = null;
-
-        minHeight = parseInt($textarea.css('min-height'), 10);
-        if (options.useHeight) {
-          var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
-          minHeight = Math.max(minHeight, parseInt(height, 10));
-        }
       };
 
       // The event handler for updates: update the 'shadow' box with the same
@@ -112,11 +111,13 @@
         $shadow.html(val);
 
         var height = isFull ? $shadow.outerHeight() : $shadow.css('height');
+        if ((maxHeight) && (height >= maxHeight)) height = maxHeight;
+
         $textarea.css('height', height);
 
         // If you've reached your max-height, show the scrollbars.
         if ((maxHeight !== null) && (scroll === false)) {
-          if (height >= maxHeight) {
+          if (height === maxHeight) {
             $textarea.css({ 'overflow-y': 'auto' });
           } else {
             $textarea.css({ 'overflow-y': 'hidden' });
@@ -134,15 +135,15 @@
 
       var updateAll = function() { updateShadow(); updateHeight(); };
 
-      // Bind things.
+      // Run the update immediately
+      updateAll();
+
+      // Bind things
       $textarea.on('change keyup', updateHeight);
       $(window).on('resize', updateAll);
 
       // Allow manually updating the height via `.trigger('autogrow')`
       $textarea.on('autogrow', updateAll);
-
-      // Run the update immediately
-      updateAll.apply(this);
     });
 
     return this;
