@@ -53,6 +53,8 @@
 
 (function($) {
 
+  var $shadow;
+
   $.fn.autoexpand = function(options) {
     var $this = this;
 
@@ -60,6 +62,7 @@
       extraLines: 0,     /* Extra padding (in number of lines) */
       preempt: true,     /* Preemptively add a new line before it reaches the end */
       preemptLength: 4,  /* Make a new line 4 letters before the end */
+      throttle: 200,     /* Throttle the keydown updates */
       speed: 100         /* Fancyness, set to `0` to disable */
     };
 
@@ -74,14 +77,13 @@
       // Sanity check: don't do anything if called prematurely
       if (!$textarea.length) return;
 
-      var $shadow = $textarea.data('shadow');
-
-      // Create the shadow element if not available
+      // Lazy-create the shadow element if not available
       if (!$shadow) {
         $shadow = $('<div class="autoexpand-shadow">').appendTo(document.body);
-        initTextarea($textarea);
-        $textarea.data('shadow', $shadow);
       }
+
+      // Initialize CSS for textarea
+      if (!$textarea.data('autoexpand')) initTextarea($textarea);
 
       // Get the min-height. This takes `rows`, `min-height` and `height` into
       // consideration (thanks, browsers)
@@ -110,6 +112,8 @@
     };
 
     var initTextarea = function($textarea) {
+      $textarea.data('autoexpand', true);
+
       // Disable the resize gripper, manually resizing will interfere with
       // the autoexpand logic
       $textarea.css({ resize: 'none', overflow: 'hidden' });
@@ -158,7 +162,8 @@
     // Bind events. Need to use `.live` instead of `.on` because if there are
     // matches during its existence, it will not match future elements that may
     // appear later.
-    this.live('change keyup focus', updateHeight);
+    this.live('focus change', updateAll);
+    this.live('keyup', throttle(updateHeight, options.throttle));
     $(window).on('resize', function() { $this.each(updateAll); });
 
     // Allow manually updating the height via `.trigger('autoexpand')`
@@ -174,6 +179,12 @@
   function int(str) {
     var i = parseInt(str, 10);
     return isNaN(i) ? null : i;
+  }
+
+  function throttle(fn, speed) {
+    return (speed && window._ && window._.throttle) ?
+      window._.throttle(fn, speed) :
+      fn;
   }
 
   // Escapes a `string` to HTML entities.
