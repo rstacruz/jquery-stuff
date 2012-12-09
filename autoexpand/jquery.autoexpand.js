@@ -108,6 +108,8 @@
         resize:     'none'
       });
 
+      $shadow.textarea = $textarea;
+
       return $shadow;
     };
 
@@ -129,7 +131,7 @@
       // Sanity check: don't do anything if called prematurely
       if (!$textarea.length) return;
 
-      var $shadow = $textarea.data('shadow') || updateShadow.apply(this);
+      if (!$shadow || !$shadow.textarea.is($textarea)) updateShadow.apply(this);
 
       // Build the value for the shadow. (preempt uses 'w' because it's the
       // widest in most fonts)
@@ -162,8 +164,8 @@
     // Bind events. Need to use `.live` instead of `.on` because if there are
     // matches during its existence, it will not match future elements that may
     // appear later.
-    this.live('focus change', updateAll);
-    this.live('keyup', throttle(updateHeight, options.throttle));
+    this.live('focus', updateAll);
+    this.live('keyup change', throttle(updateHeight, options.throttle));
     $(window).on('resize', function() { $this.each(updateAll); });
 
     // Allow manually updating the height via `.trigger('autoexpand')`
