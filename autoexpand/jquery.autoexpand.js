@@ -100,13 +100,17 @@
         minHeight:  minHeight,
         font:       $textarea.css('font'),
         boxSizing:  $textarea.css('box-sizing'),
-        border:     $textarea.css('border'),
         padding:    $textarea.css('padding'),
         wordWrap:   $textarea.css('word-wrap'),
         whiteSpace: $textarea.css('white-space'),
         visibility: 'hidden',
-        resize:     'none'
+        resize:     'none',
+        borderColor: 'red', /* [1] */
+        borderStyle: 'solid',
+        borderWidth: $textarea.css('border-width')
       });
+
+      // [1] = The 'border' doesn't quite capture 'solid 0px transparent' so we'll emulate it
 
       $shadow.textarea = $textarea;
 
