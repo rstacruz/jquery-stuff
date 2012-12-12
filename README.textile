@@ -28,14 +28,15 @@ h3. Quite useful
 
 Still very useful in a lot of common cases, but not as common as the ones above.
 
-| "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                                     |
-| "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                             |
-| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                                       |
-| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                              |
-| "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                                            |
-| "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                                        |
-| "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel                           |
-| "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport              |
+| "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                        |
+| "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                |
+| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                          |
+| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                 |
+| "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                               |
+| "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                           |
+| "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel              |
+| "Pseudoinput"://github.com/rstacruz/jquery-stuff/tree/master/pseudoinput              | Highlight the container of inputs when they're focused                |
+| "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport |
 
 h3. Niche uses
 
