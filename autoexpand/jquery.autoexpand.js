@@ -25,7 +25,7 @@
 //
 // Personally, I prefer this variation:
 //
-//     $("textarea.autoexpand:not([rows='1'])").autoexpand({ extraLines: 1 });
+//     $("textarea.autoexpand:not([rows='1'])").autoexpand({ extraLines: 1, speed: 100 });
 //     $("textarea.autoexpand[rows='1']").autoexpand();
 //
 // This makes `<textarea rows=1>` behave like a normal `<input type=text>`,
@@ -58,16 +58,16 @@
   $.fn.autoexpand = function(options) {
     var $this = this;
 
-    var defaults = {
+    options = $.extend({}, {
       extraLines: 0,     /* Extra padding (in number of lines) */
       preempt: true,     /* Preemptively add a new line before it reaches the end */
       preemptLength: 4,  /* Make a new line 4 letters before the end */
-      throttle: 200,     /* Throttle the keydown updates */
-      speed: 100         /* Fancyness, set to `0` to disable */
-    };
+      throttle: 50,      /* Throttle the keydown updates */
+      speed: 0           /* Fancyness. Be sure to add extraLines */
+    }, options||{});
 
-    if (!options) options = {};
-    options = $.extend({}, defaults, options);
+    // Transitions don't work well with the Enter key when there are no extraLines.
+    if (options.speed > 0 && options.extraLines === 0) options.speed = 0;
 
     // The event handler that updates the 'shadow' div -- done on every
     // window resize to handle resizing of the textarea.
@@ -169,7 +169,7 @@
     // matches during its existence, it will not match future elements that may
     // appear later.
     this.live('focus', updateAll);
-    this.live('keyup change', throttle(updateHeight, options.throttle));
+    this.live('input change', throttle(updateHeight, options.throttle));
     $(window).on('resize', function() { $this.each(updateAll); });
 
     // Allow manually updating the height via `.trigger('autoexpand')`
