@@ -24,7 +24,7 @@
 //
 //     img.hello { width: 40px; height: 40px; }
 //
-(function($) {
+(function($, w, devicePixelRatio15) {
   $.support.hidpi = isHiDPI();
 
   $.fn.hidpi = function() {
@@ -38,23 +38,25 @@
   };
 
   // Thanks https://github.com/imulus/retinajs/blob/master/src/retina.js
+  // The repetitive parts of the string are put in a variable so JS compressors
+  // can optimize them away.
   function isHiDPI() {
     var query =
-      "(-webkit-min-device-pixel-ratio: 1.5)," +
-      "(min--moz-device-pixel-ratio: 1.5)," +
-      "(-ms-min-device-pixel-ratio: 1.5)," +
-      "(-o-min-device-pixel-ratio: 1.5)," +
-      "(min-device-pixel-ratio: 1.5)," +
+      "(-webkit-min" + devicePixelRatio15 +
+      "(min--moz" + devicePixelRatio15 +
+      "(-ms-min" + devicePixelRatio15 +
+      "(-o-min" + devicePixelRatio15 +
+      "(min" + devicePixelRatio15 +
       "(min-resolution: 1.5dppx)";
 
-    if (window.devicePixelRatio && window.devicePixelRatio > 1)
+    if (w.devicePixelRatio && w.devicePixelRatio > 1)
       return true;
 
-    if (window.matchMedia && window.matchMedia(query).matches)
+    if (w.matchMedia && w.matchMedia(query).matches)
       return true;
 
     return false;
   }
 
-})(jQuery);
+})(jQuery, window, '-device-pixel-ratio: 1.5),');
 
