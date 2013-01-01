@@ -58,5 +58,5 @@
     return false;
   }
 
-})(jQuery, window, '-device-pixel-ratio: 1.5),');
+})(jQuery, this, '-device-pixel-ratio: 1.5),');
 
