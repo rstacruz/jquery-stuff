@@ -37,6 +37,7 @@ Still very useful in a lot of common cases, but not as common as the ones above.
 | "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel              |
 | "Pseudoinput"://github.com/rstacruz/jquery-stuff/tree/master/pseudoinput              | Highlight the container of inputs when they're focused                |
 | "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport |
+| "HiDPI"://github.com/rstacruz/jquery-stuff/tree/master/hidpi                          | Automatically uses 2x images for retina displays in images            |
 
 h3. Niche uses
 
