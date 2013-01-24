@@ -1,4 +1,4 @@
-/*! Cycler (c) 2012 Rico Sta. Cruz, MIT license. */
+/*! Cycler (c) 2012-2013 Rico Sta. Cruz, MIT license. */
 
 // Cycles between a given `list` at a given `interval`.
 // Simply define an `onactivate` hook.
@@ -123,7 +123,7 @@
   Cycler.prototype = {
     start: function(silent) {
       var self = this;
-      if ((!self._timer) && (!silent)) self.onstart.apply(self);
+      if ((!self.isStarted()) && (!silent)) self.onstart.apply(self);
 
       self.pause(true);
       self._timer = setTimeout(function() {
@@ -133,7 +133,7 @@
     },
 
     pause: function(silent) {
-      if (this._timer) {
+      if (this.isStarted()) {
         if (!silent) this.onpause.apply(this);
         clearTimeout(this._timer);
         this._timer = null;
@@ -149,6 +149,14 @@
 
     previous: function() {
       return this.next(-1);
+    },
+
+    isStarted: function() {
+      return !! this._timer;
+    },
+
+    isPaused: function() {
+      return ! this.isStarted();
     },
 
     next: function(i) {
