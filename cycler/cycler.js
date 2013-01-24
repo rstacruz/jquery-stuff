@@ -110,11 +110,12 @@
     this.onpause    = options.onpause || (function(){});
     this.onstart    = options.onstart || (function(){});
     this.initial    = (typeof options.initial === 'undefined') ? 0 : options.initial;
+    this.autostart  = (typeof options.initial === 'undefined') ? true : options.autostart;
     this.list       = list;
     this.current    = null;
 
     this.goTo(this.initial);
-    if (typeof options.interval === 'number') this.start();
+    if (this.autostart && typeof options.interval === 'number') this.start();
 
     return this;
   }
