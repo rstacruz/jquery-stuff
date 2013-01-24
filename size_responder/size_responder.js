@@ -35,7 +35,7 @@
     var self = this;
     $.extend(self, options || {});
 
-    self._matches = false;
+    self._matches = undefined;
     self._fn = $.proxy(self.onresize, self);
 
     self.enable();
@@ -48,12 +48,12 @@
     onresize: function() {
       var matches = this.matches();
 
-      if (matches && !this._matches) {
+      if (matches && this._matches !== true) {
         if (this.enter) this.enter();
         this._matches = true;
       }
 
-      else if (!matches && this._matches) {
+      else if (!matches && this._matches !== false) {
         if (this.exit) this.exit();
         this._matches = false;
       }
