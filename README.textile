@@ -44,6 +44,7 @@ h3. Niche uses
 
 Useful in some rarer cases.
 
+| "SizeResponder"://github.com/rstacruz/jquery-stuff/tree/master/size_responder         | Performs callbacks when the browser is resized to/from a given range               |
 | "Fillsize"://github.com/rstacruz/jquery-stuff/tree/master/fillsize                    | Makes an element fill up its container                                             |
 | "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements                                                                 |
 | "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *                        | General-purpose wrapper for setTimeout                                             |
