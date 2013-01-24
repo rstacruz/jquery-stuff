@@ -20,50 +20,58 @@
     function resize() {
       if (!$img) $img = $parent.find(selector);
 
-      var imageRatio     = $img.width() / $img.height();
-      var containerRatio = $parent.width() / $parent.height();
+      $img.each(function() {
+        if (!this.complete) return;
+        var $img = $(this);
 
-      // If image is wider than the container
-      if (imageRatio > containerRatio) {
-        $img.css({
-          'position': 'absolute',
-          'left': Math.round(($parent.width() - imageRatio * $parent.height()) / 2) + 'px',
-          'top': '0',
-          'right': 'auto',
-          'bottom': 'auto',
-          'width': 'auto',
-          'height': '100%'
-        });
-      }
+        var imageRatio     = $img.width() / $img.height();
+        var containerRatio = $parent.width() / $parent.height();
 
-      // If the container is wider than the image
-      else {
-        $img.css({
-          'position': 'absolute',
-          'top': Math.round(($parent.height() - ($parent.width() / $img.width() * $img.height())) / 2) + 'px',
-          'left': '0',
-          'right': 'auto',
-          'bottom': 'auto',
-          'height': 'auto',
-          'width': '100%'
-        });
-      }
+        // If image is wider than the container
+        if (imageRatio > containerRatio) {
+          $img.css({
+            'position': 'absolute',
+            'left': Math.round(($parent.width() - imageRatio * $parent.height()) / 2) + 'px',
+            'top': '0',
+            'right': 'auto',
+            'bottom': 'auto',
+            'width': 'auto',
+            'height': '100%'
+          });
+        }
+
+        // If the container is wider than the image
+        else {
+          $img.css({
+            'position': 'absolute',
+            'top': Math.round(($parent.height() - ($parent.width() / $img.width() * $img.height())) / 2) + 'px',
+            'left': '0',
+            'right': 'auto',
+            'bottom': 'auto',
+            'height': 'auto',
+            'width': '100%'
+          });
+        }
+      });
     }
 
     // Make it happen on window resize.
-    $(window).on('resize', resize);
-
-    // If the child is an image, fill it up when image's real dimensions are
-    // first determined.
-    $(selector, $parent).on('load', function() {
-      setTimeout(resize, 25);
-    });
+    $(window).resize(resize);
 
     // Allow manual invocation by doing `.trigger('fillsize')` on the container.
-    $parent.on('fillsize', resize);
+    $parent.live('fillsize', resize);
 
-    // Resize on first load.
-    $(resize);
+    // Resize on first load (or immediately if called after).
+    $(function() {
+      // If the child is an image, fill it up when image's real dimensions are
+      // first determined. Needs to be .bind() because the load event will
+      // bubble up.
+      $(selector, $parent).bind('load', function() {
+        setTimeout(resize, 25);
+      });
+
+      resize();
+    });
 
     return this;
   };
