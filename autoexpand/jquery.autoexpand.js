@@ -98,17 +98,20 @@
         zIndex:     -100,
         width:      isFull ? $textarea.outerWidth() : $textarea.css('width'),
         minHeight:  minHeight,
-        font:       $textarea.css('font'),
-        boxSizing:  $textarea.css('box-sizing'),
-        padding:    $textarea.css('padding'),
-        wordWrap:   $textarea.css('word-wrap'),
-        whiteSpace: $textarea.css('white-space'),
         visibility: 'hidden',
         resize:     'none',
         borderColor: 'red', /* [1] */
-        borderStyle: 'solid',
-        borderWidth: $textarea.css('border-width')
+        borderStyle: 'solid'
       });
+
+      var props = ['fontFamily', 'fontSize', 'lineHeight', 'boxSizing', 'paddingTop',
+      'paddingBottom', 'paddingLeft', 'paddingRight', 'wordWrap', 'whiteSpace',
+      'textWrap', 'borderWidth'];
+
+      for (var i=0; i<props.length; i++) {
+        var prop = props[i];
+        $shadow.css(prop, $textarea.css(prop));
+      }
 
       // [1] = The 'border' doesn't quite capture 'solid 0px transparent' so we'll emulate it
 
@@ -151,6 +154,7 @@
       var maxHeight = int($textarea.css('max-height'));
       if ((maxHeight) && (height >= maxHeight)) height = maxHeight;
 
+      console.log('Height=', height, ' full=', isFull, ' heights=[', $shadow.outerHeight(), '/', $shadow.css('height'));
       $textarea.css('height', height);
 
       // If we've reached your max-height, show the scrollbars
@@ -165,15 +169,13 @@
 
     var updateAll = function() { updateShadow.apply(this); updateHeight.apply(this); };
 
-    // Bind events. Need to use `.live` instead of `.on` because if there are
-    // matches during its existence, it will not match future elements that may
-    // appear later.
-    this.live('focus', updateAll);
-    this.live('input change', throttle(updateHeight, options.throttle));
+    // Bind events.
+    $(document).on('focus', this.selector, updateAll);
+    $(document).on('input change', this.selector, throttle(updateHeight, options.throttle));
     $(window).on('resize', function() { $this.each(updateAll); });
 
     // Allow manually updating the height via `.trigger('autoexpand')`
-    this.live('autoexpand', updateAll);
+    $(document).on('autoexpand', this.selector, updateAll);
 
     // Trigger immediately
     $(function() { $this.each(updateAll); });
