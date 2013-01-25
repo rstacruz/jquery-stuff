@@ -110,7 +110,7 @@
     this.onpause    = options.onpause || (function(){});
     this.onstart    = options.onstart || (function(){});
     this.initial    = (typeof options.initial === 'undefined') ? 0 : options.initial;
-    this.autostart  = (typeof options.initial === 'undefined') ? true : options.autostart;
+    this.autostart  = (typeof options.autostart === 'undefined') ? true : options.autostart;
     this.list       = list;
     this.current    = null;
 
@@ -143,7 +143,7 @@
 
     // Delays the interval a bit
     restart: function(silent) {
-      if (this._timer) this.pause(true).start(silent);
+      if (this.isStarted()) this.pause(true).start(silent);
       return this;
     },
 
