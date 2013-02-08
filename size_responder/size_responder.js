@@ -11,35 +11,49 @@
 //
 // Simple example:
 //
-//     SizeResponder.on({
+//     SizeResponder.when({
 //       width: { min: 300 },
-//       enter: function() {
+//       })
+//       .on('enter', function() {
 //         console.log("Browser was resized to < 300px width");
-//       },
-//       exit: function() {
+//       }),
+//       .on('exit', function() {
 //         console.log("Browser was resized to > 300px width");
-//       },
-//     });
+//       });
 //
 // More options:
 //
-//     SizeResponder.on({
+//     SizeResponder.when({
 //       width: { min: 300, max: 600 },
 //       height: { min: 30, max: 600 },
-//       enter: function() { ... },
-//       exit: function() { ... }
-//     });
+//     })
+//
+//     .on('enter', function() { ... })
+//     .on('exit', function() { ... })
+//     .on('tick', function() { ... })
+//
+// You can give an associated HTML class with the conditions using `.htmlClass()`:
+//
+//     SizeResponder
+//       .when({ height: { min: 300 }})
+//       .htmlClass('tall');
+//
+//    /* Toggles between <html class="tall"> and <html class="not-tall"> */
 //
 (function(w, $) {
   function SizeResponder(options) {
     var self = this;
     $.extend(self, options || {});
 
+    self.emitter = $({});
+
     self._matches = undefined;
     self._fn = $.proxy(self.onresize, self);
 
     self.enable();
-    $(function() { self.onresize(); });
+    setTimeout(function() {
+      $(function() { self.onresize(); });
+    }, 0);
 
     return self;
   }
@@ -49,15 +63,22 @@
       var matches = this.matches();
 
       if (matches && this._matches !== true) {
-        if (this.enter) this.enter();
+        this.trigger('enter');
         this._matches = true;
       }
 
       else if (!matches && this._matches !== false) {
-        if (this.exit) this.exit();
+        this.trigger('exit');
         this._matches = false;
       }
+
+      if (matches) this.trigger('tick');
     },
+
+    // Delegate events to .emitter.
+    trigger: function() { this.emitter.trigger.apply(this.emitter, arguments); return this; },
+    on: function() { this.emitter.on.apply(this.emitter, arguments); return this; },
+    off: function() { this.emitter.off.apply(this.emitter, arguments); return this; },
 
     matches: function() {
       var match = true;
@@ -77,16 +98,21 @@
     },
 
     disable: function() {
-      $(window).off('resize.sizeresponder', this._fn);
+      $(window).off('resize.sizeresponder');
     },
 
     enable: function() {
       this.disable();
       $(window).on('resize.sizeresponder', this._fn);
+    },
+
+    htmlClass: function(klass) {
+      this.on('enter', function() { $('html').addClass(klass).removeClass('not-'+klass); });
+      this.on('exit', function() { $('html').removeClass(klass).addClass('not-'+klass); });
     }
   };
 
-  SizeResponder.on = function(options) {
+  SizeResponder.when = function(options) {
     return new SizeResponder(options);
   };
 
