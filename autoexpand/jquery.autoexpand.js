@@ -89,7 +89,7 @@
       // consideration (thanks, browsers)
       var isFull = ($textarea.css('box-sizing') === 'border-box');
       var height = isFull ? $textarea.outerHeight() : $textarea.css('height');
-      var minHeight = Math.max(minHeight, int(height));
+      var minHeight = Math.max(minHeight, integer(height));
 
       $shadow.css({
         position:  'absolute',
@@ -151,10 +151,9 @@
       var isFull = ($textarea.css('box-sizing') === 'border-box');
 
       var height = isFull ? $shadow.outerHeight() : $shadow.css('height');
-      var maxHeight = int($textarea.css('max-height'));
+      var maxHeight = integer($textarea.css('max-height'));
       if ((maxHeight) && (height >= maxHeight)) height = maxHeight;
 
-      console.log('Height=', height, ' full=', isFull, ' heights=[', $shadow.outerHeight(), '/', $shadow.css('height'));
       $textarea.css('height', height);
 
       // If we've reached your max-height, show the scrollbars
@@ -184,7 +183,7 @@
   };
 
   // Converts a string (like "32px") to integer.
-  function int(str) {
+  function integer(str) {
     var i = parseInt(str, 10);
     return isNaN(i) ? null : i;
   }
