@@ -12,49 +12,49 @@ h3. Super-useful
 
 These things are often basic features that most sites/webapps I work on need.
 
-| "Anchorjump"://github.com/rstacruz/jquery-stuff/tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
-| "Autoexpand"://github.com/rstacruz/jquery-stuff/tree/master/autoexpand                | Makes text fields auto-size its height                                             |
-| "ButtonLoading"://github.com/rstacruz/jquery-stuff/tree/master/buttonloading          | Show 'loading...' text on buttons                                                  |
-| "Console Shim"://github.com/rstacruz/jquery-stuff/tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
-| "Growl"://github.com/rstacruz/jquery-stuff/tree/master/growl                          | Lightweight notification library                                                   |
-| "MailcheckHint"://github.com/rstacruz/jquery-stuff/tree/master/mailcheckhint          | Simple one-shot integration with Kicksend Mailcheck                                |
-| "Scrollagent"://github.com/rstacruz/jquery-stuff/tree/master/scrollagent              | Simple scrollspy implementation                                                    |
-| "Tabs"://github.com/rstacruz/jquery-stuff/tree/master/tabs                            | Simple tab control                                                                 |
-| "Toggleable"://github.com/rstacruz/jquery-stuff/tree/master/toggleable                | Simple toggle menu helper                                                          |
-| "UIScreen"://github.com/rstacruz/jquery-stuff/tree/master/uiscreen                    | Blacks out things                                                                  |
-| "Unorphan"://github.com/rstacruz/jquery-stuff/tree/master/unorphan                    | Prevents text orphans                                                              |
+| "Anchorjump":../../tree/master/anchorjump                | Make anchor links scroll smoothly                                                  |
+| "Autoexpand":../../tree/master/autoexpand                | Makes text fields auto-size its height                                             |
+| "ButtonLoading":../../tree/master/buttonloading          | Show 'loading...' text on buttons                                                  |
+| "Console Shim":../../tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
+| "Growl":../../tree/master/growl                          | Lightweight notification library                                                   |
+| "MailcheckHint":../../tree/master/mailcheckhint          | Simple one-shot integration with Kicksend Mailcheck                                |
+| "Scrollagent":../../tree/master/scrollagent              | Simple scrollspy implementation                                                    |
+| "Tabs":../../tree/master/tabs                            | Simple tab control                                                                 |
+| "Toggleable":../../tree/master/toggleable                | Simple toggle menu helper                                                          |
+| "UIScreen":../../tree/master/uiscreen                    | Blacks out things                                                                  |
+| "Unorphan":../../tree/master/unorphan                    | Prevents text orphans                                                              |
 
 h3. Quite useful
 
 Still very useful in a lot of common cases, but not as common as the ones above.
 
-| "Ajax Submit"://github.com/rstacruz/jquery-stuff/tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                        |
-| "Cycler"://github.com/rstacruz/jquery-stuff/tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                |
-| "Ellipsify"://github.com/rstacruz/jquery-stuff/tree/master/ellipsify                  | Truncates text with ellipses                                          |
-| "Ensurevisible"://github.com/rstacruz/jquery-stuff/tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                 |
-| "Fadeonload"://github.com/rstacruz/jquery-stuff/tree/master/fadeonload                | Fades images in on load                                               |
-| "HiDPI"://github.com/rstacruz/jquery-stuff/tree/master/hidpi                          | Automatically uses 2x images for retina displays in images            |
-| "NoMobileScroll"://github.com/rstacruz/jquery-stuff/tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                           |
-| "Prevent Overscroll"://github.com/rstacruz/jquery-stuff/tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel              |
-| "Pseudoinput"://github.com/rstacruz/jquery-stuff/tree/master/pseudoinput              | Highlight the container of inputs when they're focused                |
-| "Scrollstick"://github.com/rstacruz/jquery-stuff/tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport |
-| "Smartquotes"://github.com/rstacruz/jquery-stuff/tree/master/smartquotes              | Translates plain ASCII punctuation into typographic punctuation       |
+| "Ajax Submit":../../tree/master/ajaxsubmit               | Submits a form via AJAX instead of a page load                        |
+| "Cycler":../../tree/master/cycler *                      | Cycles through a list (lightweight carousel/slideshow)                |
+| "Ellipsify":../../tree/master/ellipsify                  | Truncates text with ellipses                                          |
+| "Ensurevisible":../../tree/master/ensurevisible          | Scrolls a pane to reveal a given item                                 |
+| "Fadeonload":../../tree/master/fadeonload                | Fades images in on load                                               |
+| "HiDPI":../../tree/master/hidpi                          | Automatically uses 2x images for retina displays in images            |
+| "NoMobileScroll":../../tree/master/nomobilescroll        | Prevent document body scrolling on iOS apps                           |
+| "Prevent Overscroll":../../tree/master/preventoverscroll | Stop pages from scrolling when scrolling through a panel              |
+| "Pseudoinput":../../tree/master/pseudoinput              | Highlight the container of inputs when they're focused                |
+| "Scrollstick":../../tree/master/scrollstick              | Makes elements stick to the top when it's outside the scroll viewport |
+| "Smartquotes":../../tree/master/smartquotes              | Translates plain ASCII punctuation into typographic punctuation       |
 
 h3. Niche uses
 
 Useful in some rarer cases.
 
-| "SizeResponder"://github.com/rstacruz/jquery-stuff/tree/master/size_responder         | Performs callbacks when the browser is resized to/from a given range               |
-| "Fillsize"://github.com/rstacruz/jquery-stuff/tree/master/fillsize                    | Makes an element fill up its container                                             |
-| "Sort"://github.com/rstacruz/jquery-stuff/tree/master/sort                            | Sorts DOM elements                                                                 |
-| "Timer"://github.com/rstacruz/jquery-stuff/tree/master/timer *                        | General-purpose wrapper for setTimeout                                             |
+| "SizeResponder":../../tree/master/size_responder         | Performs callbacks when the browser is resized to/from a given range               |
+| "Fillsize":../../tree/master/fillsize                    | Makes an element fill up its container                                             |
+| "Sort":../../tree/master/sort                            | Sorts DOM elements                                                                 |
+| "Timer":../../tree/master/timer *                        | General-purpose wrapper for setTimeout                                             |
 
 h3. Kinda deprecated / obsolete
 
 I don't find myself using these often anymore. Or, at all. But they work!
 
-| "Livenavigate"://github.com/rstacruz/jquery-stuff/tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
-| "Instance"://github.com/rstacruz/jquery-stuff/tree/master/instance                    | Lightweight views                                                                  |
+| "Livenavigate":../../tree/master/livenavigate            | In-page navigation that doesn't break the back button and actually changes the URL |
+| "Instance":../../tree/master/instance                    | Lightweight views                                                                  |
 
 _* = no dependency on jQuery_
 
