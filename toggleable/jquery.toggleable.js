@@ -1,6 +1,8 @@
 /*! jQuery.toggleable (c) 2012, Rico Sta. Cruz. MIT License.
  *  https://github.com/rstacruz/jquery-stuff/tree/master/toggleable */
 
+// Requires jQuery 1.7+.
+//
 // Makes a certain element a toggle-to-activate thing. Clicking the button
 // (the selector defined in `using`) will toggle the 'active' class for both
 // the button and the parent element.
@@ -22,20 +24,20 @@
     var $menus = this;
     var button = options.using;
 
-    $menus.on('active:off', function() {
+    $(document).on('active:off.toggleable', $menus.selector, function() {
       $(this)
         .removeClass('active')
         .find(button).removeClass('active');
     });
 
-    $menus.on('active:on', function() {
+    $(document).on('active:on.toggleable', $menus.selector, function() {
       $(this)
         .addClass('active')
         .find(button).addClass('active');
     });
 
     // Button
-    $menus.on('click', button, function(e) {
+    $(document).on('click.toggleable', $menus.find(button).selector, function(e) {
       // Prevent the body handler from working.
       e.preventDefault();
       e.stopPropagation();
@@ -49,7 +51,7 @@
       }
     });
 
-    $('body').on('click', function(e) {
+    $(document).on('click', function(e) {
       if (!options.clickout) { return; }
 
       // If sticky is true, don't dismiss the popup when the menu items
