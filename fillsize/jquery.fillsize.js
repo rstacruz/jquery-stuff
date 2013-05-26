@@ -59,7 +59,7 @@
     $(window).resize(resize);
 
     // Allow manual invocation by doing `.trigger('fillsize')` on the container.
-    $parent.live('fillsize', resize);
+    $(document).on('fillsize', $parent.selector, resize);
 
     // Resize on first load (or immediately if called after).
     $(function() {
