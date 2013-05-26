@@ -40,19 +40,24 @@
 
   $.fn.pseudoInput = function() {
     var $container = this;
-    var input = ':input:visible:enabled';
 
-    $(this).on('click', function(e) {
+    var input = ':input:visible:enabled';
+    var selector = {
+      container: $container.selector,
+      inputs: $container.selector + ' ' + input
+    };
+
+    $(document).on('click.pseudoinput', selector.container, function(e) {
       if ($(e.target).is(input+ ', label, :input')) return;
       $(input, this).eq(0).focus();
     });
 
-    $(input, $container).on('focus', function() {
-      $(this).closest($container).addClass('focus');
+    $(document).on('focus.pseudoinput', selector.inputs, function() {
+      $(this).closest(selector.container).addClass('focus');
     });
 
-    $(input, $container).on('blur', function() {
-      $(this).closest($container).removeClass('focus');
+    $(document).on('blur.pseudoinput', selector.inputs, function() {
+      $(this).closest(selector.container).removeClass('focus');
     });
 
     return $container;
