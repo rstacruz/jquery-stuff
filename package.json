@@ -1,0 +1,18 @@
+{
+  "name": "jquery-stuff",
+  "description": "",
+  "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R spec",
+    "autotest": "./node_modules/.bin/mocha --watch -R progress"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0",
+    "chai": "~1.6.0",
+    "jsdom": "~0.6.5",
+    "supervisor": "~0.5.2",
+    "sinon": "~1.7.2"
+  },
+  "license": "MIT"
+}

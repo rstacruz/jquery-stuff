@@ -42,26 +42,27 @@
       e.preventDefault();
       e.stopPropagation();
 
-      if ($(this).is('.active')) {
-        $(this).closest($menus).trigger('active:off');
+      var $a = $(this);
+      if ($a.is('.active')) {
+        $a.closest($menus.selector).trigger('active:off');
       } else {
         // Clear out any other popup first.
-        if (options.modal) { $('body').trigger('click'); }
-        $(this).closest($menus).trigger('active:on');
+        if (options.modal) { $('body').trigger('click.toggleable'); }
+        $(this).closest($menus.selector).trigger('active:on');
       }
     });
 
-    $(document).on('click', function(e) {
-      if (!options.clickout) { return; }
+    $(document).on('click.toggleable', function(e) {
+      if (!options.clickout) return;
 
       // If sticky is true, don't dismiss the popup when the menu items
       // are clicked.
       if (options.sticky) {
-        var isMenuItem = $(e.target).closest($menus).length > 0;
-        if (isMenuItem) { return; }
+        var isMenuItem = $(e.target).closest($menus.selector).length > 0;
+        if (isMenuItem) return;
       }
 
-      $menus.trigger('active:off');
+      $($menus.selector).trigger('active:off');
     });
 
     return this;
