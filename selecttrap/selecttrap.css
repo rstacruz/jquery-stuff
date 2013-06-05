@@ -1,0 +1,25 @@
+.selecttrap {
+  position: relative;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  min-width: 100px;
+  box-sizing: border-box;
+  padding: 0 10px; }
+
+.selecttrap select {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: white;
+  border: 0;
+  opacity: 0; }
+
+/* Customize me */
+.selecttrap {
+  background: #eee;
+  border: solid 1px #ddd;
+  border-radius: 2px;
+  color: #333; }
