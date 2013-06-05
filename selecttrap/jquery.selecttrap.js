@@ -26,7 +26,7 @@
     $select
       .on('change.selecttrap', function() {
         var val = $select.val();
-        var opt = $select.find('[value='+val+']');
+        var opt = $select.find('[value="'+val+'"]');
         $text.text(opt.text());
       })
       .trigger('change.selecttrap');

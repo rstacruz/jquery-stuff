@@ -7,7 +7,8 @@ describe('selecttrap', function() {
     render(
       '<select name="hi">' +
       '<option value="v1">One</option>' +
-      '<option value="v2">Two</option>'
+      '<option value="v2">Two</option>' +
+      '<option value="v3">Third item</option>'
     );
   });
 
@@ -45,6 +46,11 @@ describe('selecttrap', function() {
     it("changes", function() {
       $('select').val('v2').trigger('change');
       assert.equal('Two', $('.st-text').text());
+    });
+
+    it("spaces", function() {
+      $('select').val('v3').trigger('change');
+      assert.equal('Third item', $('.st-text').text());
     });
   });
 
