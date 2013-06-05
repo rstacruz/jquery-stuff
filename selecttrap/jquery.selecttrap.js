@@ -26,8 +26,8 @@
     $select
       .on('change.selecttrap', function() {
         var val = $select.val();
-        var opt = $select.find('[value="'+val+'"]');
-        $text.text(opt.text());
+        var opt = $select.find('[value="'+val.replace(/"/, '\\"')+'"]');
+        $text.text(opt.length ? opt.text() : val);
       })
       .trigger('change.selecttrap');
   };

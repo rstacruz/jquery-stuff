@@ -8,7 +8,8 @@ describe('selecttrap', function() {
       '<select name="hi">' +
       '<option value="v1">One</option>' +
       '<option value="v2">Two</option>' +
-      '<option value="v3">Third item</option>'
+      '<option value="v3">Third item</option>' +
+      '<option>Fourth item</option>'
     );
   });
 
@@ -55,5 +56,30 @@ describe('selecttrap', function() {
   });
 
   // ----
+
+  describe('options.class', function() {
+    beforeEach(function() {
+      $('select').selecttrap({ 'class': 'mini' });
+    });
+
+    it('should work', function() {
+      assert.isTrue($('.selecttrap').is('.mini'));
+    });
+  });
+
+  // ----
+
+  describe('implicit values', function() {
+    beforeEach(function() {
+      $('select').selecttrap();
+    });
+
+    it('should work', function() {
+      $('select').val('Fourth item').trigger('change');
+      assert.equal('Fourth item', $('select').val());
+      assert.equal('Fourth item', $('.st-text').text());
+    });
+  });
+
 });
 
