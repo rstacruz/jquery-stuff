@@ -1,3 +1,6 @@
+/*! jQuery selecttrap -- https://github.com/rstacruz/jquery-stuff
+    (c) 2013, Rico Sta. Cruz, MIT licensed */
+
 ;(function($) {
 
   /**
