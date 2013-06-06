@@ -6,31 +6,36 @@
   /**
    * Traps a selectbox in a wrapper, effectively allowing you to "skin" how it
    * looks like.
+   * 
+   *     $("select").selecttrap();
    */
 
   $.fn.selecttrap = function(options) {
     if (!options) options = {};
-    var $select = $(this);
 
-    // Initialize box
-    var $box = $select
-      .wrap('<div class="selecttrap">')
-      .closest('div')
-      .addClass(options['class']);
+    $(this).each(function() {
+      var $select = $(this);
 
-    // Initialize artifacts
-    var $text = $('<div class="st-text"></div>')
-      .appendTo($box)
-      .after('<div class="st-arrow">');
+      // Initialize box
+      var $box = $select
+        .wrap('<div class="selecttrap">')
+        .closest('div')
+        .addClass(options['class']);
 
-    // Change the placeholder text when the <select> is changed
-    $select
-      .on('change.selecttrap', function() {
-        var val = $select.val();
-        var opt = $select.find('[value="'+val.replace(/"/, '\\"')+'"]');
-        $text.text(opt.length ? opt.text() : val);
-      })
-      .trigger('change.selecttrap');
+      // Initialize artifacts
+      var $text = $('<div class="st-text"></div>')
+        .appendTo($box)
+        .after('<div class="st-arrow">');
+
+      // Change the placeholder text when the <select> is changed
+      $select
+        .on('change.selecttrap', function() {
+          var val = $select.val();
+          var opt = $select.find('[value="'+val.replace(/"/, '\\"')+'"]');
+          $text.text(opt.length ? opt.text() : val);
+        })
+        .trigger('change.selecttrap');
+    });
   };
 
 })(jQuery);

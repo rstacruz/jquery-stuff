@@ -81,5 +81,28 @@ describe('selecttrap', function() {
     });
   });
 
+  // ----
+
+  describe('multiple', function() {
+    beforeEach(function() {
+      render(
+        '<select name="hi">' +
+        '<option value="v1">One</option>' +
+        '<option value="v2">Two</option>' +
+        '</select>' +
+        '<select name="hello">' +
+        '<option value="w1">One</option>' +
+        '<option value="w2">Two</option>' +
+        '</select>'
+      );
+    });
+
+    it('should work', function() {
+      $('select').selecttrap();
+
+      assert(2, $('body .selecttrap').length);
+    });
+  });
+
 });
 
