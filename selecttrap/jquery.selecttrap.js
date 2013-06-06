@@ -23,6 +23,7 @@
       .appendTo($box)
       .after('<div class="st-arrow">');
 
+    // Change the placeholder text when the <select> is changed
     $select
       .on('change.selecttrap', function() {
         var val = $select.val();
