@@ -78,7 +78,7 @@
       if (!$textarea.length) return;
 
       // Lazy-create the shadow element if not available
-      if (!$shadow || $shadow.parent().length === 0) {
+      if (!$shadow || $shadow.closest(document.documentElement).length === 0) {
         $shadow = $('<div class="autoexpand-shadow">').appendTo(document.body);
       }
 
@@ -154,6 +154,7 @@
       var maxHeight = integer($textarea.css('max-height'));
       if ((maxHeight) && (height >= maxHeight)) height = maxHeight;
 
+      console.log("HTML", val, "height", $shadow.outerHeight(), $shadow.css('height'), $shadow.length, $shadow.parent());
       $textarea.css('height', height);
 
       // If we've reached your max-height, show the scrollbars
