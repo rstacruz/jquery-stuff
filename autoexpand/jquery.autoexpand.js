@@ -78,7 +78,7 @@
       if (!$textarea.length) return;
 
       // Lazy-create the shadow element if not available
-      if (!$shadow) {
+      if (!$shadow || $shadow.parent().length === 0) {
         $shadow = $('<div class="autoexpand-shadow">').appendTo(document.body);
       }
 
