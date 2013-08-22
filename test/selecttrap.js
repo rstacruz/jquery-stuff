@@ -67,6 +67,14 @@ describe('selecttrap', function() {
     });
   });
 
+  describe('class inheritance', function() {
+    it('should work', function() {
+      $('select').addClass('small');
+      $('select').selecttrap();
+      assert.isTrue($('.selecttrap').is('.small'));
+    });
+  });
+
   // ----
 
   describe('implicit values', function() {

@@ -16,11 +16,15 @@
     $(this).each(function() {
       var $select = $(this);
 
+      // Don't reapply
+      if ($select.parent().is('.selecttrap')) return;
+
       // Initialize box
       var $box = $select
         .wrap('<div class="selecttrap">')
         .closest('div')
-        .addClass(options['class']);
+        .addClass(options['class'])
+        .addClass($select.attr('class'));
 
       // Initialize artifacts
       var $text = $('<div class="st-text"></div>')
@@ -29,12 +33,34 @@
 
       // Change the placeholder text when the <select> is changed
       $select
-        .on('change.selecttrap', function() {
-          var val = $select.val();
+        .on('change.selecttrap selecttrap:update', function() {
+          var val = $select.val() || '';
           var opt = $select.find('[value="'+val.replace(/"/, '\\"')+'"]');
           $text.text(opt.length ? opt.text() : val);
         })
         .trigger('change.selecttrap');
+
+      // Inherit disabledness
+      if ($select.is(':disabled'))
+        $box.addClass('disabled');
+
+      // Hover tracking
+      $select
+        .on('hover.selecttrap', function() {
+          $box.addClass('hover');
+        })
+        .on('mouseout.selecttrap', function() {
+          $box.removeClass('hover');
+        });
+
+      // Focus tracking
+      $select
+        .on('focus.selecttrap', function() {
+          $box.addClass('focus');
+        })
+        .on('blur.selecttrap', function() {
+          $box.removeClass('focus');
+        });
     });
   };
 
