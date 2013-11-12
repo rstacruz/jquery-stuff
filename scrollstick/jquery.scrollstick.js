@@ -17,6 +17,13 @@
 //  - `max`    - Move away when scrolling down this far.
 //  - `offset` - How many pixels from the top.
 //  - `zIndex` - The zIndex.
+//  - `tag`    - Tag
+//
+//
+// You can unbind a scrollstick via:
+//
+//     $(selector).scrollstick({ tag: 'mytag' });
+//     $.unscrollstick(selector, 'mytag');
 //
 (function($) {
   $.fn.scrollstick = function(options) {
@@ -30,30 +37,42 @@
       max: null,
       offset: 0,
       zIndex: 10,
-      exitZIndex: 10
+      exitZIndex: 10,
+      tag: null
     };
 
     options = $.extend({}, defaults, options);
 
+    var tag = ".scrollstick";
+    if (options.tag) tag = tag + '.' + options.tag;
+
     var $clone;
-    var $parent;
 
     // On resizing, reposition the top/left/right of the cloned element.
-    $(window).on('resize', reposition = function() {
+    $(window).on('resize'+tag, reposition = function() {
       options.min = $this.offset().top;
       if ((!$clone) || (!$this.data('stuck'))) return;
+
+      var borderBox = ($clone.css('box-sizing') === 'border-box');
 
       $this.css({
         position: 'fixed',
         zIndex: options.zIndex,
-        margin: 0,
+        margin: 0
+      });
+
+      // Force a repaint
+      $clone[0].outerWidth;
+
+      // Then reposition based on the clone's new position
+      $this.css({
         top: options.offset,
         left: $clone.offset().left,
-        right: $(window).width() - ($clone.offset().left + $clone.outerWidth())
+        width: borderBox ? $clone.outerWidth() : $clone.innerWidth()
       });
     });
 
-    $(window).on('scroll', onscroll = function() {
+    $(window).on('scroll'+tag, onscroll = function() {
       var pos = $(window).scrollTop();
       var inside = pos > (options.min - options.offset);
       var stuck = $this.data('stuck');
@@ -63,13 +82,13 @@
         stuck = true;
         $this.data('stuck', true);
         $this.addClass('stuck');
-        $parent = $this.parent();
 
         // Make a placeholder.
         $clone = $this.clone();
         $clone.addClass('scrollstick-placeholder');
         $clone.css({ visibility: 'hidden' });
         $clone.insertAfter($this);
+        $this.data('scrollstick:clone', $clone);
 
         reposition();
       }
@@ -81,29 +100,50 @@
         if ((exiting) && ($this.css('position') !== 'absolute')) {
           $this
             .addClass('exited')
-            .css({ position: 'absolute', top: options.max, zIndex: options.exitZIndex });
+            .css({
+              position: 'absolute',
+              top: options.max - $clone.offsetParent().offset().top,
+              left: $clone.offset().left - $clone.offsetParent().offset().left,
+              zIndex: options.exitZIndex
+            });
         }
 
         if ((!exiting) && ($this.css('position') !== 'fixed')) {
           $this
             .removeClass('exited')
-            .css({ position: 'fixed', top: options.offset, zIndex: options.zIndex });
+            .css({ position: 'fixed',
+              top: options.offset,
+              left: $clone.offset().left,
+              zIndex: options.zIndex
+            });
         }
       }
 
       // Unstick it.
-      if (stuck && !inside) {
-        $this.data('stuck', false);
-        $this.removeClass('stuck');
-
-        // Either kill the clone, or just hide it
-        $this.attr('style', '');
-        $clone.remove();
-      }
+      if (stuck && !inside) unstick($this);
     });
 
     // Fix bug in Firefox where scroll event isn't triggered after reloading
     // in the middle of a page
-    $(onscroll);
+    onscroll();
   };
+
+  $.unscrollstick = function(selector, _tag) {
+    var $el = $(selector);
+    if ($el.data('stuck')) unstick($el);
+
+    var tag = ".scrollstick";
+    if (_tag) tag = tag + '.' + _tag;
+
+    $(window).off(tag);
+  };
+
+  function unstick($this) {
+    $this.data('stuck', false);
+    $this.removeClass('stuck');
+    $this.attr('style', '');
+    var $clone = $this.data('scrollstick:clone');
+    if ($clone) $clone.remove();
+  }
+
 })(jQuery);
