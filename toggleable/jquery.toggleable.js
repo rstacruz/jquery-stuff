@@ -7,7 +7,10 @@
 // (the selector defined in `using`) will toggle the 'active' class for both
 // the button and the parent element.
 //
-//     $("nav.dropdown").toggleable({ using: "a.button", [options] });
+//     $(document).toggleable('nav.dropdown', { using: "a.button", [options] });
+//
+// When using with `$(document)`, it's preferable /not/ to put this inside a
+// `$(function() { ... })` block. Toggleable will create delegate events.
 //
 // Options:
 //
@@ -16,56 +19,69 @@
 // - `clickout` - Allow clicking away. Default to true.
 
 (function($) {
-  $.fn.toggleable = function(options) {
-    if (!options) options = {};
+  var defaults = {
+    modal: true,
+    clickout: true,
+    using: null,
+    event: "click"
+  };
 
-    if (typeof options.modal === 'undefined') options.modal = true;
-    if (typeof options.clickout === 'undefined') options.clickout = true;
-    var $menus = this;
-    var button = options.using;
+  $.fn.toggleable = function(parent, options) {
+    var $context = this;
 
-    $(document).on('active:off.toggleable', $menus.selector, function() {
-      $(this)
-        .removeClass('active')
-        .find(button).removeClass('active');
+    // Normalize arguments
+    if (arguments.length === 0) { parent = null; options = {}; }
+    if (typeof parent === 'object') { options = parent; parent = null; }
+    options = $.extend({}, defaults, options || {});
+
+    var button = (parent || '') + ' ' + options.using;
+    var click = options.event;
+
+    $context.on('toggle:off.toggleable', parent, function () {
+      $(this).removeClass('active');
+      $(options.using, this).removeClass('active');
     });
 
-    $(document).on('active:on.toggleable', $menus.selector, function() {
-      $(this)
-        .addClass('active')
-        .find(button).addClass('active');
+    $context.on('toggle:on.toggleable', parent, function () {
+      $(this).addClass('active');
+      $(options.using, this).addClass('active');
     });
 
     // Button
-    $(document).on('click.toggleable', $menus.find(button).selector, function(e) {
+    $context.on(click+'.toggleable', button, function (e) {
       // Prevent the body handler from working.
       e.preventDefault();
-      e.stopPropagation();
-
       var $a = $(this);
+
       if ($a.is('.active')) {
-        $a.closest($menus.selector).trigger('active:off');
+        $a.closest(parent||$context).trigger('toggle:off');
       } else {
         // Clear out any other popup first.
-        if (options.modal) { $('body').trigger('click.toggleable'); }
-        $(this).closest($menus.selector).trigger('active:on');
+        if (options.modal) { $(document).trigger('toggle:clear'); }
+        $a.closest(parent||$context).trigger('toggle:on');
       }
+      e.stopPropagation();
     });
 
-    $(document).on('click.toggleable', function(e) {
-      if (!options.clickout) return;
+    if (options.clickout) {
+      $(document).on(click+'.toggleable toggle:clear.toggleable', function (e) {
+        // If sticky is true, don't dismiss the popup when the menu items
+        // are clicked.
+        if (options.sticky) {
+          var isMenuItem = $(e.target).closest(parent||$context).length > 0;
+          if (isMenuItem) return;
+        }
 
-      // If sticky is true, don't dismiss the popup when the menu items
-      // are clicked.
-      if (options.sticky) {
-        var isMenuItem = $(e.target).closest($menus.selector).length > 0;
-        if (isMenuItem) return;
-      }
-
-      $($menus.selector).trigger('active:off');
-    });
+        $find(parent, $context).trigger('toggle:off');
+      });
+    }
 
     return this;
   };
+
+  function $find (child, parent) {
+    if (!child) return parent;
+    return $(child, parent);
+  }
 
 })(jQuery);
