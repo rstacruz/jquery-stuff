@@ -54,6 +54,9 @@
 
     if (href != '#') {
       var $area = $(href);
+      if(!$area.length){
+        $area = $('a[name=' + href.substr(1) + ']');
+      }
       // Find the parent
       if (options.parent) {
         var $parent = $area.closest(options.parent);
