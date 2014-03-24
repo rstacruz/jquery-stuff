@@ -46,10 +46,10 @@
 
       // Hover tracking
       $select
-        .on('hover.selecttrap', function() {
+        .on('mouseover.selecttrap mouseenter.selecttrap', function() {
           $box.addClass('hover');
         })
-        .on('mouseout.selecttrap', function() {
+        .on('mouseout.selecttrap mouseleave.selecttrap', function() {
           $box.removeClass('hover');
         });
 
