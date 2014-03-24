@@ -14,7 +14,7 @@
 // All options are optional:
 //
 //  - `min`    - Start sticking when the user has scrolled down this far.
-//  - `max`    - Move away when scrolling down this far.
+//  - `parent` - Restrict it to this closest parent.
 //  - `offset` - How many pixels from the top.
 //  - `zIndex` - The zIndex.
 //  - `tag`    - Tag
@@ -28,13 +28,14 @@
 (function($) {
   $.fn.scrollstick = function(options) {
     var reposition, onscroll, $this = this;
-    if (!this.length) return;
+    if (!$this.length) return;
 
-    this.data('stuck', false);
+    if ($this.is('.stuck')) unstick($this);
+    $this.data('stuck', false);
 
     var defaults = {
       min: this.offset().top,
-      max: null,
+      parent: null,
       offset: 0,
       zIndex: 10,
       exitZIndex: 10,
@@ -64,6 +65,18 @@
       // Force a repaint
       $clone[0].outerWidth;
 
+      // Find the maximum scroll height that it can go
+      if (options.parent) {
+        var $parent = $this.closest(options.parent);
+        var max =
+          $parent.offset().top +
+          $parent.outerHeight() -
+          parseInt($parent.css('padding-bottom'),10) -
+          $this.outerHeight();
+
+        $this.data('scrollstick:max', max);
+      }
+
       // Then reposition based on the clone's new position
       $this.css({
         top: options.offset,
@@ -76,6 +89,7 @@
       var pos = $(window).scrollTop();
       var inside = pos > (options.min - options.offset);
       var stuck = $this.data('stuck');
+      var max = $this.data('scrollstick:max');
 
       // Stick it.
       if (!stuck && inside) {
@@ -94,15 +108,17 @@
       }
 
       // Move it away when you've reached the max.
-      if ((typeof options.max === 'number') && (stuck)) {
-        var exiting = (pos > options.max);
+      if ((typeof max === 'number') && (stuck)) {
+        console.log('pos', pos, ' - max', max);
+        var exiting = (pos + options.offset) > max;
 
+        // If its scrolled beyond, keep it stuck in its position via position: absolute
         if ((exiting) && ($this.css('position') !== 'absolute')) {
           $this
             .addClass('exited')
             .css({
               position: 'absolute',
-              top: options.max - $clone.offsetParent().offset().top,
+              top: max - $clone.offsetParent().offset().top,
               left: $clone.offset().left - $clone.offsetParent().offset().left,
               zIndex: options.exitZIndex
             });
@@ -132,10 +148,9 @@
     var $el = $(selector);
     if ($el.data('stuck')) unstick($el);
 
-    var tag = ".scrollstick";
-    if (_tag) tag = tag + '.' + _tag;
-
-    $(window).off(tag);
+    if (_tag) {
+      $(window).off(_tag);
+    }
   };
 
   function unstick($this) {
@@ -143,7 +158,9 @@
     $this.removeClass('stuck');
     $this.attr('style', '');
     var $clone = $this.data('scrollstick:clone');
-    if ($clone) $clone.remove();
+    if ($clone) {
+      $clone.remove();
+    }
   }
 
 })(jQuery);
