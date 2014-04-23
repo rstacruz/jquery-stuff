@@ -18,6 +18,7 @@ These things are often basic features that most sites/webapps I work on need.
 | "Console Shim":../../tree/master/console-shim *          | Makes `console.log()` silently fail if the browser doesn't support it              |
 | "Growl":../../tree/master/growl                          | Lightweight notification library                                                   |
 | "MailcheckHint":../../tree/master/mailcheckhint          | Simple one-shot integration with Kicksend Mailcheck                                |
+| "Paymentform":../../tree/master/paymentform              | Simple integration with jQuery.payment                                             |
 | "Scrollagent":../../tree/master/scrollagent              | Simple scrollspy implementation                                                    |
 | "Tabs":../../tree/master/tabs                            | Simple tab control                                                                 |
 | "Toggleable":../../tree/master/toggleable                | Simple toggle menu helper                                                          |
