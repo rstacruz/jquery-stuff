@@ -109,7 +109,6 @@
 
       // Move it away when you've reached the max.
       if ((typeof max === 'number') && (stuck)) {
-        console.log('pos', pos, ' - max', max);
         var exiting = (pos + options.offset) > max;
 
         // If its scrolled beyond, keep it stuck in its position via position: absolute
