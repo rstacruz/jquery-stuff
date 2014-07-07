@@ -44,17 +44,14 @@
       if ($select.is(':disabled'))
         $box.addClass('disabled');
 
-      // Hover tracking
+      // Hover and focus tracking
       $select
-        .on('mouseover.selecttrap mouseenter.selecttrap', function() {
+        .on('hover.selecttrap', function() {
           $box.addClass('hover');
         })
-        .on('mouseout.selecttrap mouseleave.selecttrap', function() {
+        .on('mouseout.selecttrap', function() {
           $box.removeClass('hover');
-        });
-
-      // Focus tracking
-      $select
+        })
         .on('focus.selecttrap', function() {
           $box.addClass('focus');
         })
