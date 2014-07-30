@@ -1,4 +1,4 @@
-/*! Anchorjump (c) 2012, Rico Sta. Cruz. MIT License.
+/*! Anchorjump (c) 2014, Rico Sta. Cruz. MIT License.
  *   http://github.com/rstacruz/jquery-stuff/tree/master/anchorjump */
 
 // Makes anchor jumps happen with smooth scrolling.
@@ -54,6 +54,9 @@
 
     if (href != '#') {
       var $area = $(href);
+      if(!$area.length){
+        $area = $('a[name=' + href.substr(1) + ']');
+      }
       // Find the parent
       if (options.parent) {
         var $parent = $area.closest(options.parent);
