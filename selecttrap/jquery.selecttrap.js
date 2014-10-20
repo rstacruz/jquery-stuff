@@ -46,7 +46,7 @@
 
       // Hover and focus tracking
       $select
-        .on('hover.selecttrap', function() {
+        .on('mouseenter.selecttrap hover.selecttrap', function() {
           $box.addClass('hover');
         })
         .on('mouseout.selecttrap', function() {
