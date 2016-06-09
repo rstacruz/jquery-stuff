@@ -154,7 +154,6 @@
       var maxHeight = integer($textarea.css('max-height'));
       if ((maxHeight) && (height >= maxHeight)) height = maxHeight;
 
-      console.log("HTML", val, "height", $shadow.outerHeight(), $shadow.css('height'), $shadow.length, $shadow.parent());
       $textarea.css('height', height);
 
       // If we've reached your max-height, show the scrollbars
